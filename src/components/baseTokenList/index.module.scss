@@ -1,0 +1,67 @@
+.scroll {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  overflow-x: auto;
+
+  background-color: #ffffff;
+  background-color: var(--bg-14);
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    background-color: #f5f5f5;
+  }
+}
+
+.wrapper {
+  display: flex;
+}
+
+.item {
+  min-width: 20%;
+  text-align: center;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 0.5rem;
+
+  &:hover {
+    background-color: #f3f3f3;
+    background-color: var(--bg-05);
+  }
+
+  &_name {
+    display: block;
+    font-size: 1rem;
+    margin: 0;
+
+    color: #333333;
+    color: var(--text-02);
+  }
+
+  &_pic {
+    display: inline-block;
+    padding: 0.5rem;
+    border-radius: 99999px;
+    margin: 0;
+
+    border: 0.05rem solid #f3f3f3;
+    border: 0.05rem solid var(--border-05);
+  }
+  &_img {
+    width: 1.5rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    border-radius: 9999px;
+    text-align: center !important;
+    font-size: 0.6rem;
+    display: block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url(../../assets/svg/token.svg);
+    background-color: #f3f3f3;
+    background-color: var(--bg-05);
+    text-align: center;
+    font-weight: bold;
+  }
+}

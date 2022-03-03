@@ -1,0 +1,53 @@
+.container {
+  padding: 0.5rem;
+
+  .item {
+    display: flex;
+    padding: 0.5rem 0;
+    position: relative;
+
+    .bar {
+      display: block;
+      position: absolute;
+      height: 3rem;
+      top: 2rem;
+      left: 0.7rem;
+      border-left: 0.05rem dashed #00d395;
+    }
+
+    .left {
+      margin-right: 0.5rem;
+
+      .status {
+        width: 1.4rem;
+        height: 1.4rem;
+        line-height: 1.4rem;
+        border-radius: 99999px;
+        text-align: center;
+        color: #ffffff;
+        border: 0.05rem solid #00d395;
+        z-index: 1;
+        background-color: #00d395;
+      }
+    }
+
+    .right {
+      padding: 0.2rem;
+      p {
+        margin: 0;
+        display: block;
+        font-size: 0.9rem;
+        color: #333;
+        color: var(--text-02);
+        font-weight: bold;
+      }
+
+      span {
+        display: block;
+        font-size: 0.8rem;
+        color: #999999;
+        color: var(--text-06);
+      }
+    }
+  }
+}

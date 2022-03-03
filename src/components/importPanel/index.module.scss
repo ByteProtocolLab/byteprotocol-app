@@ -1,0 +1,53 @@
+.wrapper {
+  display: inline-block;
+  background-color: #ffffff;
+  background-color: var(--bg-02);
+  padding: 0.5rem;
+  border-radius: 1.3rem;
+  box-sizing: border-box;
+  margin-bottom: 0.5rem;
+
+  .box {
+    padding: 0.5rem;
+    background-color: #ffffff;
+    background-color: var(--bg-02);
+    border-radius: 2rem;
+    display: flex;
+    margin-bottom: 0.2rem;
+  }
+
+  .target {
+    display: block;
+    cursor: pointer;
+    padding: 0.6rem;
+    border: 0.05rem solid #f3f3f3;
+    border: 0.05rem solid var(--border-02);
+    width: 100%;
+    border-radius: 5rem;
+    font-size: 0.9rem;
+    color: #ffffff;
+    box-sizing: border-box;
+    background-color: #41b66d;
+
+    i {
+      font-size: 1rem;
+      color: #ffffff;
+      margin-right: 0.2rem;
+    }
+  }
+
+  .btn {
+    display: block;
+    padding: 0.6rem;
+    border: 0.05rem solid #f3f3f3;
+    border: 0.05rem solid var(--border-02);
+    background-color: #ffffff;
+    background-color: var(--bg-02);
+    width: 100%;
+    border-radius: 5rem;
+    font-size: 0.9rem;
+    color: #333333;
+    color: var(--text-02);
+    box-sizing: border-box;
+  }
+}

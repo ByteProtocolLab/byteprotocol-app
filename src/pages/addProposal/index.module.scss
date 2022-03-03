@@ -1,0 +1,128 @@
+.wrapper {
+  margin: auto;
+  width: 640px;
+}
+
+.container {
+  text-align: left;
+}
+
+.back {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  color: #333;
+  color: var(--text-02);
+
+  &_icon {
+    margin-right: 0.2rem;
+    font-size: 1.2rem;
+  }
+
+  p {
+    margin: 0;
+    margin-bottom: 0;
+    font-size: 1.2rem;
+    color: #333;
+    color: var(--text-02);
+  }
+}
+
+.main {
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  background-color: #ffffff;
+  background-color: var(--bg-02);
+
+  &_item {
+    border-radius: 0.2rem;
+    margin-bottom: 0.5rem;
+    border: 0.05rem solid #e3e3e3;
+    border: 0.05rem solid var(--border-01);
+    background-color: #f3f5fa;
+    background-color: var(--bg-04);
+
+    &_info {
+      font-size: 1.5rem !important;
+      display: block;
+      font-weight: 500;
+      width: 100%;
+      padding: 0.5rem;
+      box-sizing: border-box;
+      background-color: #f3f5fa;
+      background-color: var(--bg-04);
+      outline: none;
+      border: none;
+      font-size: 0.9rem;
+      color: #333333;
+      color: var(--text-02);
+    }
+
+    &_title {
+      margin: 0;
+      font-size: 0.9rem;
+      padding: 0.5rem;
+      color: #666666;
+      color: var(--text-01);
+    }
+
+    &_input {
+      display: block;
+      font-weight: 500;
+      width: 100%;
+      padding: 0.5rem;
+      box-sizing: border-box;
+      background-color: #f3f5fa;
+      background-color: var(--bg-04);
+      outline: none;
+      border: none;
+      font-size: 0.9rem;
+      color: #333333;
+      color: var(--text-02);
+    }
+
+    &:hover {
+      border: 0.05rem solid #09f;
+    }
+
+    textarea {
+      display: block;
+      border-radius: 0.2rem;
+      padding: 0.5rem;
+      height: 10rem;
+      outline: none;
+      border: none;
+      width: 100%;
+      background: none;
+      box-sizing: border-box;
+      resize: none;
+      font-size: 0.9rem;
+      color: #333333;
+      color: var(--text-02);
+    }
+  }
+
+  &_button {
+    display: block;
+    padding: 0.6rem !important;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    border-radius: 0.3rem;
+    color: #ffffff;
+    background-color: #0099ff;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .wrapper {
+    width: 100%;
+  }
+
+  .container {
+    margin: 0 0.8rem;
+  }
+}

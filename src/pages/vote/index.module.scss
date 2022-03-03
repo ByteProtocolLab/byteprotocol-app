@@ -1,0 +1,130 @@
+.wrapper {
+  margin: 0 0.8rem;
+}
+
+.container {
+  width: 640px;
+  margin: auto;
+}
+
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.back {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  cursor: pointer;
+  margin-bottom: 1rem;
+
+  &_icon {
+    margin-right: 0.2rem;
+    font-size: 0.9rem;
+    color: #333;
+    color: var(--text-02);
+
+    i {
+      font-size: 1.2rem;
+    }
+  }
+
+  p {
+    margin: 0;
+    margin-bottom: 0;
+    color: #333;
+    color: var(--text-02);
+  }
+}
+
+.wallet {
+  margin-bottom: 0.5rem;
+  width: 34%;
+  margin-right: 1%;
+  box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.08);
+  background-color: #ffffff;
+  background-color: var(--bg-02);
+
+  &_header {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0;
+    padding: 0.5rem;
+    color: #333;
+    border-bottom: 0.1rem solid #e3e3e3;
+
+    color: var(--text-02);
+    border-bottom: 0.1rem solid var(--border-01);
+  }
+
+  &_box {
+    padding: 0.5rem;
+    border-bottom: 0.1rem solid #e3e3e3;
+    border-bottom: 0.1rem solid var(--border-01);
+    p {
+      margin: 0;
+      display: block;
+      font-size: 0.9rem;
+      font-weight: bold;
+      margin-bottom: 0.4rem;
+      color: #999;
+      color: var(--text-06);
+    }
+    span {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 0;
+
+      color: #333;
+      color: var(--text-02);
+    }
+  }
+
+  &_footer {
+    padding: 0.5rem;
+  }
+
+  &_describe {
+    display: block;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+
+    color: #999;
+    color: var(--text-06);
+  }
+
+  &_btn {
+    display: block;
+    padding: 0.6rem !important;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #0099ff;
+  }
+}
+
+.content {
+  width: 65%;
+}
+
+@media screen and (max-width: 575px) {
+  .container {
+    width: 100%;
+  }
+  .wallet {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+  .content {
+    width: 100%;
+  }
+}

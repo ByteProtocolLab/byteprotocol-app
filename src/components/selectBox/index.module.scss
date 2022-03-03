@@ -1,0 +1,71 @@
+.select {
+  border: 0.05rem solid transparent;
+  border-radius: 1rem;
+
+  &_bg {
+    background-color: #f3f5fa;
+    background-color: var(--bg-04);
+  }
+
+  &:hover {
+    border: 0.05rem solid #09f;
+    border-radius: 1rem;
+  }
+
+  .box {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    text-align: left;
+    align-items: center;
+    padding: 0.4rem;
+    width: 100%;
+    box-sizing: border-box;
+
+    &_select {
+      display: flex;
+      align-items: center;
+      font-size: 0.8rem;
+
+      &_icon {
+        margin-right: 0.3rem;
+        width: 1.4rem;
+        height: 1.4rem;
+        color: #ffffff !important;
+        border-radius: 99999px;
+        line-height: 1.4rem !important;
+        text-align: center !important;
+        font-size: 0.8rem;
+        display: block;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-color: #fff;
+        background-image: url(../../assets/svg/token.svg);
+        color: var(--text-01) !important;
+      }
+
+      &_token {
+        white-space: nowrap;
+        display: block;
+        font-size: 1rem;
+        margin: 0;
+        padding: 0;
+
+        color: #333333;
+        color: var(--text-02);
+      }
+    }
+
+    &_btn {
+      margin: 0 0.3rem;
+      color: #333333;
+      color: var(--text-02);
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .select {
+    width: 100%;
+  }
+}

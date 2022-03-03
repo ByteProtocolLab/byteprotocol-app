@@ -1,0 +1,50 @@
+.main {
+  width: 300px;
+}
+.item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  padding: 0.5rem 0.7rem;
+  cursor: pointer;
+  border-radius: 0.3rem;
+
+  i {
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    text-align: center;
+    margin-right: 0.5rem;
+    font-size: 1.5rem !important;
+    color: #333333;
+    color: var(--text-02);
+  }
+
+  .info {
+    margin-left: 0.3rem;
+    .title {
+      display: block;
+      font-size: 0.9rem;
+      color: #333333;
+      color: var(--text-02);
+    }
+    .label {
+      display: block;
+      font-size: 0.9rem;
+      color: #333;
+      color: var(--text-04);
+    }
+  }
+
+  &:hover {
+    background-color: #f3f5fa;
+    background-color: var(--bg-04);
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .main {
+    width: 100%;
+  }
+}

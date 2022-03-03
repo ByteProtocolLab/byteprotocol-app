@@ -1,0 +1,154 @@
+.main {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 0.05rem solid #f3f3f3;
+  border-bottom: 0.05rem solid var(--border-04);
+
+  &_item {
+    width: 46.5%;
+
+    &_left {
+      text-align: left;
+    }
+
+    &_right {
+      text-align: right;
+    }
+
+    &_header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+
+      p {
+        margin: 0;
+        font-size: 0.8rem;
+        color: #666;
+        color: var(--text-01);
+
+        i {
+          margin-left: 0.2rem;
+          color: rgb(73, 165, 115);
+        }
+      }
+    }
+
+    &_value {
+      margin: 0;
+      display: block;
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      color: #333;
+      color: var(--text-02);
+      word-wrap: break-word;
+    }
+
+    &_symbol {
+      display: block;
+      font-size: 0.9rem;
+      color: #666;
+      color: var(--text-02);
+    }
+  }
+
+  .arrow {
+    display: block;
+    text-align: center;
+    width: 2.5rem;
+    border-radius: 99px;
+    cursor: auto;
+    i {
+      font-size: 1.2rem;
+
+      color: #666;
+      color: var(--text-02);
+    }
+  }
+}
+
+.transcation {
+  margin-bottom: 0.5rem;
+  border-bottom: 0.05rem solid #f3f3f3;
+  border-bottom: 0.05rem solid var(--border-04);
+
+  &_item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+
+    &_title {
+      font-size: 0.8rem;
+      margin: 0;
+      color: #666;
+      color: var(--text-01);
+    }
+
+    &_value {
+      font-size: 0.8rem;
+      margin: 0;
+      color: #666;
+      color: var(--text-01);
+    }
+
+    &_dot {
+      display: inline-block;
+      margin-left: 0.3rem;
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 9999px;
+      border: 0.05rem solid rgb(126, 255, 175);
+      background-color: rgb(65, 182, 109);
+    }
+  }
+}
+
+.description {
+  border-radius: 0.2rem;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+
+  background-color: #dbf1ff;
+  color: #09f;
+  background-color: var(--bg-10);
+}
+
+.sumbit_btn {
+  display: block;
+  padding: 0.8rem !important;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: #09f;
+  color: #fff;
+  font-size: 1.2rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.sumbit_disablebtn {
+  display: block;
+  padding: 0.8rem !important;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  border-radius: 0.3rem;
+  color: #fff;
+  background-color: #bac7da;
+  color: var(--text-03);
+  background-color: var(--btn-bg-01);
+}
+
+@media screen and (max-width: 575px) {
+  .wrapper {
+    left: 0;
+    width: 100%;
+    margin-left: 0;
+  }
+}

@@ -1,0 +1,124 @@
+.wallet {
+  &_btn {
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 0.2rem;
+    background-color: #111111;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border: 0.05rem solid #333;
+
+    p {
+      margin: 0 0.3rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  &_header {
+    text-align: center;
+    margin-bottom: 1.2rem;
+
+    span {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+      font-weight: bold;
+
+      color: #333333;
+      color: var(--text-02);
+    }
+
+    p {
+      display: block;
+      font-size: 0.9rem;
+
+      color: #999;
+      color: var(--text-02);
+    }
+  }
+
+  &_service {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    padding: 0.6rem;
+    margin-bottom: 0.9rem;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.08);
+
+    input[type='checkbox'] {
+      width: 1.6rem;
+      height: 1.2rem;
+      line-height: 1.2rem;
+      display: inline-block;
+      text-align: center;
+      vertical-align: middle;
+      margin-right: 0.7rem;
+      position: relative;
+      border: 0.05rem solid #09f;
+      background-color: #09f;
+      color: #fff;
+      border-radius: 0.3rem;
+    }
+
+    input[type='checkbox']::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      border: 0.05rem solid #09f;
+      background-color: #fff;
+      border-radius: 0.2rem;
+      width: 100%;
+      height: 100%;
+    }
+
+    input[type='checkbox']:checked::before {
+      content: '\2713';
+      background-color: #fff;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      border: 0.05rem solid #09f;
+      background-color: #09f;
+      color: #fff;
+      border-radius: 0.2rem;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    p {
+      margin: 0;
+      display: inline-block;
+      color: var(--text-02);
+
+      a {
+        color: #09f;
+      }
+    }
+  }
+
+  &_box {
+    &_header {
+      margin-bottom: 0.7rem;
+      display: flex;
+      align-items: center;
+      color: #666666;
+      color: var(--text-02);
+
+      i {
+        display: block;
+        font-style: normal;
+        width: 1.3rem;
+        height: 1.3rem;
+        background-color: #09f;
+        text-align: center;
+        line-height: 1.4rem;
+        color: #ffffff;
+        margin-right: 0.3rem;
+        border-radius: 0.9rem;
+      }
+    }
+  }
+}

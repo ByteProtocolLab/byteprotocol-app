@@ -1,0 +1,40 @@
+.wrapper {
+  display: flex;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  width: 200px;
+
+  .item {
+    width: 100%;
+    padding: 1rem 0.5rem;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &_title {
+      display: block;
+      font-size: 1rem;
+      color: #333333;
+      color: var(--text-02);
+
+      i {
+        margin-right: 0.5rem;
+      }
+    }
+
+    &_icon {
+      display: block;
+      font-size: 1.2rem !important;
+      color: #09f;
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .wrapper {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}

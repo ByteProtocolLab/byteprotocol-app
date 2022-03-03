@@ -1,0 +1,49 @@
+.container {
+  margin: 0.8rem 0.8rem 0.8rem 0;
+}
+
+.box {
+  width: 100%;
+  height: 0.2rem;
+  background-color: #f3f3f3;
+  border-radius: 9999px;
+  position: relative;
+
+  .status {
+    position: absolute;
+    top: -10px;
+    left: 0px;
+    width: 16px;
+    height: 16px;
+    background-color: #09f;
+    border: 2px solid #a4d3ff;
+    border-radius: 9999px;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+
+    &:hover {
+      border: 2px solid #8dc8ff;
+    }
+  }
+
+  .bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 20%;
+    border-radius: 9999px;
+    background-color: #09f;
+  }
+}
+
+.footer {
+  padding: 0.6rem 0.2rem 0 0.2rem;
+  display: flex;
+  justify-content: space-between;
+  p {
+    margin: 0;
+    font-size: 1rem;
+    color: #666;
+  }
+}

@@ -1,0 +1,24 @@
+.box {
+  text-align: center;
+  .title {
+    font-size: 1.2rem;
+    margin-top: 0.6rem;
+    margin-bottom: 0.4rem;
+    color: #666666;
+    color: var(--text-02);
+  }
+
+  .info {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    color: #666666;
+    color: var(--text-02);
+  }
+
+  .warn {
+    font-size: 0.8rem;
+    margin-bottom: 0.4rem;
+    color: #999999;
+    color: var(--text-06);
+  }
+}

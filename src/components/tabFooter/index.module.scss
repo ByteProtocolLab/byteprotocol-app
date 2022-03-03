@@ -1,0 +1,48 @@
+.footer {
+    display: flex;
+    align-items: center;
+
+    &_title {
+      display: block;
+      text-align: center;
+      padding: 0.2rem 1rem;
+      height: 100%;
+      width: 22%;
+      margin: 0;
+      font-size: 1rem;
+      color: #333333;
+      color: var(--text-04);
+    }
+    &_tips {
+      text-align: right;
+      width: 78%;
+      border-bottom-right-radius: 1rem;
+      display: flex;
+      justify-content: flex-start;
+
+      &_tri {
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 2.5rem solid transparent;
+        border-right: 1rem solid #f3f5fa;
+        border-right: 1rem solid var(--border-02);
+      }
+
+      &_desc {
+        display: block;
+        width: 100%;
+        padding: 0.7rem;
+        margin: 0;
+        font-size: 0.7rem;
+        font-style: italic;
+        border-bottom-right-radius: 1rem;
+        font-weight: bold;
+
+        color: #bbb;
+        background-color: #f3f5fa;
+        color: var(--text-05);
+        background-color: var(--btn-bg-03);
+      }
+    }
+  }

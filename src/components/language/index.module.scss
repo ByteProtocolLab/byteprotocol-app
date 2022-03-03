@@ -1,0 +1,67 @@
+.wrapper {
+  width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+
+  .item {
+    display: flex;
+    width: 48%;
+    margin: 1%;
+    padding: 0.8rem;
+    border-radius: 0.3rem;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    border: 0.05rem solid #f3f3f3;
+    color: #333;
+    border: 0.05rem solid var(--border-02);
+    color: var(--text-04);
+
+    &_title {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    &_label {
+      display: block;
+      font-size: 0.8rem;
+    }
+
+    &_active {
+      border: 0.05rem solid #09f;
+      color: #09f;
+      position: relative;
+      background-color: #dbf1ff;
+      background-color: var(--bg-10);
+
+      &_tri {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        border-top: 1rem solid transparent;
+        border-left: 1rem solid transparent;
+        border-right: 1rem solid #09f;
+        border-bottom: 1rem solid #09f;
+
+        i {
+          position: absolute;
+          font-size: 0.8rem;
+          color: #fff;
+        }
+      }
+    }
+
+    &:hover {
+      color: #09f;
+      background-color: #dbf1ff;
+      background-color: var(--bg-10);
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .wrapper {
+    width: 100%;
+  }
+}

@@ -1,0 +1,27 @@
+.wrapper {
+  background-color: #ffffff;
+  background-color: var(--bg-02);
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+
+  table {
+    width: 100%;
+    font-size: 0.9rem;
+    color: #666666;
+    color: var(--text-01);
+
+    tbody,
+    thead {
+      tr {
+        display: table;
+        border-bottom: 0.05rem solid #e3e3e3;
+        border-bottom: 0.05rem solid var(--border-01);
+        width: 100%;
+        th,
+        td {
+          padding: 0.2rem;
+        }
+      }
+    }
+  }
+}

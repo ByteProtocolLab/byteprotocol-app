@@ -1,0 +1,126 @@
+.wrapper {
+  display: flex;
+  padding: 0.7rem;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1;
+
+  .left {
+    display: flex;
+    align-items: center;
+
+    &_logo {
+      cursor: pointer;
+      height: 1.3rem;
+      width: 8.5rem;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-color: transparent;
+      width: 85px;
+      height: 27px;
+      background-image: url(../../assets/svg/logo.svg);
+      background-image: var(--logo-01);
+    }
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+
+    &_label {
+      cursor: pointer;
+      border: 1px solid #2f8af529;
+      padding: 0.5rem;
+      border-radius: 0.3rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      margin-right: 0.3rem;
+      position: relative;
+      background-color: #2f8af529;
+      color: #09f;
+      font-size: 0.9rem;
+      padding: 0.3rem;
+
+      span {
+        width: 6rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        word-break: break-all;
+        font-size: 0.9rem;
+        padding: 0 0.3rem;
+        border-radius: 0.3rem;
+
+        color: #666666;
+        color: var(--text-02);
+      }
+
+      i {
+        display: block;
+        margin-right: 0.3rem;
+      }
+    }
+
+    &_account {
+      display: flex;
+      align-items: center;
+      padding: 0.25rem;
+      border-radius: 0.3rem;
+
+      background-color: #ffffff;
+      background-color: var(--bg-02);
+
+      &_value {
+        margin: 0;
+        font-size: 0.9rem;
+        border-radius: 0.3rem;
+        font-weight: bold;
+        margin-right: 0.3rem;
+        color: #666666;
+        color: var(--text-02);
+      }
+
+      span {
+        width: 5rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        word-break: break-all;
+        font-size: 0.9rem;
+        padding: 0.3rem;
+        border-radius: 0.3rem;
+        font-weight: bold;
+        color: #666666;
+        color: var(--text-02);
+        background-color: #f3f5fa;
+        background-color: var(--bg-04);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .left {
+    &_middle {
+      position: fixed;
+      width: 100%;
+      bottom: 2%;
+      left: 0;
+      text-align: center;
+    }
+  }
+
+  .right {
+    &_account {
+      &_value {
+        display: none;
+      }
+    }
+  }
+}

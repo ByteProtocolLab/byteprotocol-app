@@ -1,0 +1,70 @@
+.main {
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 0.05rem solid #f3f3f3;
+  border-bottom: 0.05rem solid var(--border-04);
+  .message {
+    font-size: 1.2rem;
+    margin-top: 0.6rem;
+    margin-bottom: 0.4rem;
+    color: #666666;
+    color: var(--text-02);
+  }
+  .icon {
+    display: inline-block;
+    font-size: 2rem !important;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    background-color: #41b66d;
+    width: 4rem;
+    height: 4rem;
+    line-height: 4rem;
+    text-align: center;
+    border-radius: 50%;
+  }
+  .describe {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #999999;
+    color: var(--text-06);
+    margin-bottom: 0.3rem;
+  }
+  .blockHash {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #333333;
+    color: var(--text-02);
+    word-break: break-all;
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+  }
+  .review {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #41b66d;
+    word-break: break-all;
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+  }
+}
+
+.btn {
+  cursor: pointer;
+  display: block;
+  padding: 0.8rem !important;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  background: none;
+  color: #666;
+  color: var(--text-01);
+}
+
+@media screen and (max-width: 575px) {
+  .wrapper {
+    left: 0;
+    width: 100%;
+    margin-left: 0;
+  }
+}
