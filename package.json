@@ -23,6 +23,7 @@
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
     "@uniswap/v2-sdk": "^3.0.1",
+    "@walletconnect/ethereum-provider": "^1.7.1",
     "@web3-react/core": "^8.0.18-beta.0",
     "@web3-react/eip1193": "^8.0.13-beta.0",
     "@web3-react/empty": "^8.0.10-beta.0",
