@@ -108,7 +108,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "lint-fix": "eslint --fix .js src",
-    "predeploy": "npm run build", 
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
