@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/core": "7.12.3",
+    "@coinbase/wallet-sdk": "^3.0.1",
     "@ethersproject/address": "^5.3.0",
     "@ethersproject/contracts": "^5.3.0",
     "@ethersproject/providers": "^5.3.0",
