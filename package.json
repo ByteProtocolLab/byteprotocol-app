@@ -1,5 +1,6 @@
 {
-  "name": "sysx-app",
+  "homepage": "./",
+  "name": "byteprotocol-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
