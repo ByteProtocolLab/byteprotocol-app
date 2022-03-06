@@ -21,7 +21,7 @@ export const SUPPORTED_MENUS: { [key: string]: Menu } = {
     icon: 'iconfont icon-thunderbolt'
   },
   VOTE: {
-    name: 'vote',
+    name: 'vote(BETA)',
     path: '/dao',
     icon: 'iconfont icon-rocket'
   }
