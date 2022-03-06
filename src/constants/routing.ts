@@ -33,7 +33,8 @@ import {
   BUSD,
   BTCB,
   USDT_BSC,
-  DAI_BSC
+  DAI_BSC,
+  WBNB
 } from './tokens';
 
 type ChainTokenList = {
@@ -46,7 +47,7 @@ type ChainCurrencyList = {
 
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.MAINNET]: [WETH9[ChainId.MAINNET], DAI, USDC, USDT, WBTC],
-  [ChainId.BSC]: [DAI_BSC, BUSD, BTCB, USDT_BSC]
+  [ChainId.BSC]: [WBNB, DAI_BSC, BUSD, BTCB, USDT_BSC]
 };
 
 export const ADDITIONAL_BASES: {
