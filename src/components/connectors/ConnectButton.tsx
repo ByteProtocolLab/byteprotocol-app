@@ -49,7 +49,6 @@ export function ConnectButton({
         }}
       >
         <i className="iconfont icon-redo" />
-        <span>Try Again?</span>
       </button>
     );
   } else if (isActive) {
@@ -59,7 +58,6 @@ export function ConnectButton({
         onClick={() => connector.deactivate()}
       >
         <i className="iconfont icon-lock" />
-        <span>DisConnect</span>
       </button>
     );
   } else {
@@ -91,7 +89,6 @@ export function ConnectButton({
         disabled={isActivating}
       >
         <i className="iconfont icon-api" />
-        <span>Connect</span>
       </button>
     );
   }

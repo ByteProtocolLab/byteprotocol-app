@@ -82,25 +82,20 @@
     position: absolute;
     top: 0;
     right: 0;
-    height: 100%;
-    width: 7rem;
+    height: 3rem;
+    width: 3rem;
+    margin: 0.25rem;
+    border-radius: 50%;
     text-align: center;
     cursor: pointer;
     background: none;
-    padding: 0.4rem 0.7rem;
     border: none;
     border-left: 0.05rem solid #e3e3e3;
     border-left: 0.05rem solid var(--border-01);
-    color: #333333;
-    color: var(--text-02);
-    background-color: #e7e7e7;
-    background-color: var(--bg-17);
+    background-color: #41b66d;
+    color: #ffffff;
     border-top-right-radius: 0.3rem;
     border-bottom-right-radius: 0.3rem;
-
-    span {
-      margin-left: 0.2rem;
-    }
 
     i {
       font-size: 1rem !important;
