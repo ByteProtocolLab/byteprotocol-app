@@ -2,6 +2,7 @@ import React from 'react';
 import { Currency, Fraction } from '@uniswap/sdk-core';
 import { useIntl } from 'react-intl';
 import style from './index.module.scss';
+import { ChainId } from '../../connectors/chains';
 
 export default function TokenList({
   currencies,
@@ -34,7 +35,7 @@ export default function TokenList({
                   style={{
                     backgroundImage: item.wrapped.address
                       ? `url(https://tokens.1inch.io/${
-                          item.isNative
+                          item.isNative && item.chainId === ChainId.MAINNET
                             ? '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
                             : item.wrapped.address.toLowerCase()
                         }.png)`

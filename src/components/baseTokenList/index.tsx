@@ -1,6 +1,7 @@
 import React from 'react';
 import { Currency } from '@uniswap/sdk-core';
 import style from './index.module.scss';
+import { ChainId } from '../../connectors/chains';
 
 export default function BaseTokenList({
   currencies,
@@ -26,7 +27,7 @@ export default function BaseTokenList({
                 style={{
                   backgroundImage: item.wrapped.address
                     ? `url(https://tokens.1inch.io/${
-                        item.isNative
+                        item.isNative && item.chainId === ChainId.MAINNET
                           ? '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
                           : item.wrapped.address.toLowerCase()
                       }.png)`
