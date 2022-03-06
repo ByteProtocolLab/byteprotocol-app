@@ -16,12 +16,12 @@ export const SUPPORTED_MENUS: { [key: string]: Menu } = {
     icon: 'iconfont icon-transaction'
   },
   LIMITORDER: {
-    name: 'limitOrder(BETA)',
+    name: 'limitOrder',
     path: '/limitOrder',
     icon: 'iconfont icon-thunderbolt'
   },
   VOTE: {
-    name: 'vote(BETA)',
+    name: 'vote',
     path: '/dao',
     icon: 'iconfont icon-rocket'
   }

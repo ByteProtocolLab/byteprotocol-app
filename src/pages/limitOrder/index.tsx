@@ -6,7 +6,6 @@ import { Currency, CurrencyAmount } from '@uniswap/sdk-core';
 import { NATIVE_CURRENCY, USDC } from '../../constants/tokens';
 import Setting from '../../components/setting';
 import SlippageLimit from '../../components/slippageLimit';
-import Alert from '../../components/alert';
 import Input from '../../components/input';
 import AmountInBox from '../../components/amountInBox';
 import GasPrice from '../../components/gasPrice';
@@ -37,7 +36,6 @@ export default function LimitOrder() {
   const [slippageLimitVisible, setSlippageLimitVisible] = useState(false);
   const [gasPriceVisible, setGasPriceVisible] = useState(false);
   const [addressVisible, setAddressVisible] = useState(false);
-  const [alertVisible, setAlertVisible] = useState(true);
   const [expireIn, setExpireIn] = useState('0');
   const [swap, setSwap] = useState<Order>({
     inputCurrency: NATIVE_CURRENCY[chainId ?? DEFAULT_CHAIN],
@@ -293,16 +291,6 @@ export default function LimitOrder() {
         }}
         onCancel={() => {
           setGasPriceVisible(false);
-        }}
-      />
-      <Alert
-        visible={alertVisible}
-        title="Use suggestions"
-        message="In development"
-        describe="The limit order is in the development stage, please do not use it"
-        btnLabel={intl.formatMessage({ id: 'close' })}
-        onCancel={() => {
-          setAlertVisible(false);
         }}
       />
     </div>
