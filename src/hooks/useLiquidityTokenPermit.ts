@@ -1,7 +1,7 @@
 import { BigNumber } from 'ethers';
 import { useMemo } from 'react';
-import { ChainId } from '../connectors/chains';
 import { ROUTER_ADDRESS } from '../constants/address';
+import { DEFAULT_CHAIN } from '../constants/misc';
 import useActiveWeb3React from './useActiveWeb3React';
 import { useNonces } from './useEIP2612';
 import { PermitDomain, PermitMessage, useErc20Permit } from './useErc20Permit';
@@ -24,7 +24,7 @@ export function useLiquidityTokenPermit(
 
     const message: PermitMessage = {
       owner: account,
-      spender: ROUTER_ADDRESS[chainId ?? ChainId.MAINNET],
+      spender: ROUTER_ADDRESS[chainId ?? DEFAULT_CHAIN],
       value: value.toString(),
       nonce: nonces.toNumber(),
       deadline: deadline.toNumber() + PERMIT_VALIDITY_BUFFER

@@ -1,13 +1,12 @@
 import { Currency, CurrencyAmount, Percent } from '@uniswap/sdk-core';
 import { useRouterContract } from './useContract';
 import { calculateGasMargin, calculateSlippageAmount } from '../utils/common';
-import { ZERO_PERCENT } from '../constants/misc';
+import { DEFAULT_CHAIN, ZERO_PERCENT } from '../constants/misc';
 import { TransactionResponse } from '@ethersproject/providers';
 import { BigNumber } from 'ethers';
 import useTransactionDeadline from './useTransactionDeadline';
 import useActiveWeb3React from './useActiveWeb3React';
 import { useENSAddress } from './useENSAddress';
-import { ChainId } from '../connectors/chains';
 
 export default function useAddLiquidity(
   allowedSlippage: Percent,
@@ -17,7 +16,7 @@ export default function useAddLiquidity(
   recipientAddressOrName?: string
 ) {
   const { account, library, chainId } = useActiveWeb3React();
-  const routerContract = useRouterContract(chainId ?? ChainId.MAINNET);
+  const routerContract = useRouterContract(chainId ?? DEFAULT_CHAIN);
   const deadline = useTransactionDeadline();
   const recipient = useENSAddress(recipientAddressOrName);
 

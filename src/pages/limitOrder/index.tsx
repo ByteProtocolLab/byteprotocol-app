@@ -16,7 +16,7 @@ import RatioBox from '../../components/ratioBox';
 import style from './index.module.scss';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { ROUTER_ADDRESS } from '../../constants/address';
-import { ChainId } from '../../connectors/chains';
+import { DEFAULT_CHAIN } from '../../constants/misc';
 
 export interface Order {
   inputCurrency: Currency;
@@ -40,7 +40,7 @@ export default function LimitOrder() {
   const [alertVisible, setAlertVisible] = useState(true);
   const [expireIn, setExpireIn] = useState('0');
   const [swap, setSwap] = useState<Order>({
-    inputCurrency: NATIVE_CURRENCY[chainId ?? ChainId.MAINNET],
+    inputCurrency: NATIVE_CURRENCY[chainId ?? DEFAULT_CHAIN],
     inputValue: 0,
     inputApproveAmount: 0,
     outputCurrency: USDC,
@@ -57,7 +57,7 @@ export default function LimitOrder() {
       swap.outputCurrency,
       Math.floor(swap.outputValue * 10 ** swap.outputCurrency.wrapped.decimals)
     ),
-    ROUTER_ADDRESS[chainId ?? ChainId.MAINNET]
+    ROUTER_ADDRESS[chainId ?? DEFAULT_CHAIN]
   );
 
   const chooseInput = (currency: Currency) => {

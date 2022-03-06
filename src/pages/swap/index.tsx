@@ -15,10 +15,10 @@ import SwapDetailsDropdown from '../../components/swapDetailsDropdown';
 import { useApproveCallback } from '../../hooks/useApproveCallback';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { ROUTER_ADDRESS } from '../../constants/address';
-import { ChainId } from '../../connectors/chains';
 import { useWrappedCallback } from '../../hooks/useWrappedCallback';
 import { parseCurrencyAmount } from '../../utils/parse';
 import style from './index.module.scss';
+import { DEFAULT_CHAIN } from '../../constants/misc';
 
 const SwapButton = ({
   intl,
@@ -154,7 +154,7 @@ export default function Swap() {
 
   const { approve, approveCallback } = useApproveCallback(
     parseCurrencyAmount(inputCurrency, inputValue),
-    ROUTER_ADDRESS[chainId ?? ChainId.MAINNET]
+    ROUTER_ADDRESS[chainId ?? DEFAULT_CHAIN]
   );
 
   const [amountSpecified, otherCurrency] = useMemo(() => {

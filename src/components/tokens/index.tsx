@@ -68,7 +68,7 @@ function TokensBox({
               </p>
             </div>
             <BaseTokenList
-              currencies={COMMON_BASES[chainId ?? ChainId.MAINNET]}
+              currencies={COMMON_BASES[chainId ?? ChainId.BSC]}
               onChoose={onChoose}
             />
           </div>

@@ -5,7 +5,7 @@ import { useRouterContract } from './useContract';
 import { SignatureData } from './useErc20Permit';
 import { calculateGasMargin, calculateSlippageAmount } from '../utils/common';
 import { BigNumber } from 'ethers';
-import { ChainId } from '../connectors/chains';
+import { DEFAULT_CHAIN } from '../constants/misc';
 
 export function useRemoveLiquidity(
   approval: boolean,
@@ -16,7 +16,7 @@ export function useRemoveLiquidity(
   currencyAmountB?: CurrencyAmount<Currency>
 ) {
   const { account, chainId } = useActiveWeb3React();
-  const routerContract = useRouterContract(chainId ?? ChainId.MAINNET);
+  const routerContract = useRouterContract(chainId ?? DEFAULT_CHAIN);
   const deadline = useTransactionDeadline();
   if (
     !account ||

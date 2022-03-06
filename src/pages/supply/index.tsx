@@ -15,10 +15,13 @@ import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import ConfirmSupply from '../../components/confirmSupply';
 import LiquidDetailsDropdown from '../../components/liquidDetailsDropdown';
 import { ROUTER_ADDRESS } from '../../constants/address';
-import { ChainId } from '../../connectors/chains';
 import { parseCurrencyAmount } from '../../utils/parse';
+import {
+  DEFAULT_CHAIN,
+  ONE_HUNDRED_PERCENT,
+  ZERO_FRACTION
+} from '../../constants/misc';
 import style from './index.module.scss';
-import { ONE_HUNDRED_PERCENT, ZERO_FRACTION } from '../../constants/misc';
 
 const SupplyButton = ({
   intl,
@@ -151,14 +154,14 @@ export default function Supply() {
     approveCallback: inputApproveCallback
   } = useApproveCallback(
     parseCurrencyAmount(inputCurrency, inputValue),
-    ROUTER_ADDRESS[chainId ?? ChainId.MAINNET]
+    ROUTER_ADDRESS[chainId ?? DEFAULT_CHAIN]
   );
   const {
     approve: outputApprove,
     approveCallback: outputApproveCallback
   } = useApproveCallback(
     parseCurrencyAmount(outputCurrency, outputValue),
-    ROUTER_ADDRESS[chainId ?? ChainId.MAINNET]
+    ROUTER_ADDRESS[chainId ?? DEFAULT_CHAIN]
   );
 
   const [amountSpecified, otherCurrency] = useMemo(() => {

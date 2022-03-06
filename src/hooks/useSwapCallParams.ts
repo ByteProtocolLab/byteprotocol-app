@@ -2,7 +2,7 @@ import { Currency, Percent, TradeType } from '@uniswap/sdk-core';
 import { Trade, Router } from '@uniswap/v2-sdk';
 import { BigNumber } from 'ethers';
 import { useMemo } from 'react';
-import { ChainId } from '../connectors/chains';
+import { DEFAULT_CHAIN } from '../constants/misc';
 import useActiveWeb3React from './useActiveWeb3React';
 import { useRouterContract } from './useContract';
 
@@ -15,7 +15,7 @@ export function useSwapCallArguments(
   recipient?: string | undefined
 ) {
   const { chainId } = useActiveWeb3React();
-  const routerContract = useRouterContract(chainId ?? ChainId.MAINNET);
+  const routerContract = useRouterContract(chainId ?? DEFAULT_CHAIN);
   return useMemo(() => {
     if (routerContract && trade && allowedSlippage && recipient && deadline) {
       const calls = [];

@@ -10,9 +10,9 @@ import { useIntl } from 'react-intl';
 import { useCurrencyBalance } from '../../hooks/useCurrencyBalance';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { NetworksSelect } from '../connectors/NetworksSelect';
-import style from './index.module.scss';
 import { NATIVE_CURRENCY } from '../../constants/tokens';
-import { ChainId } from '../../connectors/chains';
+import { DEFAULT_CHAIN } from '../../constants/misc';
+import style from './index.module.scss';
 
 const ConnectBox = ({ onOpen }: { onOpen: () => void }) => {
   const intl = useIntl();
@@ -32,9 +32,7 @@ const AccountBox = ({
   onOpen: () => void;
 }) => {
   const { chainId } = useActiveWeb3React();
-  const balance = useCurrencyBalance(
-    NATIVE_CURRENCY[chainId ?? ChainId.MAINNET]
-  );
+  const balance = useCurrencyBalance(NATIVE_CURRENCY[chainId ?? DEFAULT_CHAIN]);
   return (
     <div className={style.right_account} onClick={onOpen}>
       <Avatar width={27} height={27} edge={15} address={account} />

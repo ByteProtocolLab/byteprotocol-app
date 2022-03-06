@@ -15,6 +15,7 @@ import Confirm from '../confirm';
 import Modal from '../modal';
 import Alert from '../alert';
 import style from './index.module.scss';
+import { DEFAULT_CHAIN } from '../../constants/misc';
 
 export function ConfirmRedeemModal({
   visible,
@@ -61,7 +62,7 @@ export function ConfirmRedeemModal({
           callParams.liquidityAmount.quotient
         )
       : undefined,
-    ROUTER_ADDRESS[chainId ?? ChainId.MAINNET]
+    ROUTER_ADDRESS[chainId ?? DEFAULT_CHAIN]
   );
 
   const allowSlippageLimit = new Percent(slippageLimit, 100);
