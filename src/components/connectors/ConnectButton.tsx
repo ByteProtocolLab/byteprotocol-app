@@ -28,7 +28,7 @@ export function ConnectButton({
   if (error) {
     return (
       <button
-        className={style.connect_button}
+        className={`${style.connect_button} ${style.connect_button_warn}`}
         onClick={() => {
           if (
             connector instanceof WalletConnect ||
@@ -54,16 +54,16 @@ export function ConnectButton({
   } else if (isActive) {
     return (
       <button
-        className={style.connect_button}
+        className={`${style.connect_button} ${style.connect_button_danger}`}
         onClick={() => connector.deactivate()}
       >
-        <i className="iconfont icon-lock" />
+        <i className="iconfont icon-none" />
       </button>
     );
   } else {
     return (
       <button
-        className={style.connect_button}
+        className={`${style.connect_button} ${style.connect_button_active}`}
         onClick={
           isActivating
             ? undefined

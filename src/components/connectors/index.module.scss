@@ -4,6 +4,8 @@
   margin-bottom: 0.9rem;
   border: none;
   border-radius: 0.5rem;
+  border-top-right-radius: 3rem;
+  border-bottom-right-radius: 3rem;
   background: none;
   width: 100%;
   display: flex;
@@ -94,8 +96,22 @@
     border-left: 0.05rem solid var(--border-01);
     background-color: #41b66d;
     color: #ffffff;
-    border-top-right-radius: 0.3rem;
-    border-bottom-right-radius: 0.3rem;
+
+    &_danger {
+      color: #ffffff;
+      color: var(--text-03);
+      background-color: #ff5353;
+    }
+
+    &_warn {
+      color: #ffffff;
+      color: var(--text-03);
+      background-color: #ff9c08;
+    }
+
+    &_active {
+      background-color: #41b66d;
+    }
 
     i {
       font-size: 1rem !important;
