@@ -23,6 +23,8 @@ export enum ChainId {
   POLYGON_MUMBAI = 80001
 }
 
+export const SUPPORT_CHAINID = [ChainId.BSC];
+
 const ETH: AddEthereumChainParameter['nativeCurrency'] = {
   name: 'Ether',
   symbol: 'ETH',

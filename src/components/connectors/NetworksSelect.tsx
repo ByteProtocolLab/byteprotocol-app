@@ -4,7 +4,12 @@ import { Network } from '@web3-react/network';
 import { WalletConnect } from '@web3-react/walletconnect';
 import { Magic } from '@web3-react/magic';
 import { useCallback, useState } from 'react';
-import { CHAINS, getAddChainParameters, URLS } from '../../connectors/chains';
+import {
+  CHAINS,
+  getAddChainParameters,
+  SUPPORT_CHAINID,
+  URLS
+} from '../../connectors/chains';
 import { Connector } from '@web3-react/types';
 import style from './index.module.scss';
 
@@ -102,7 +107,7 @@ export function NetworksSelect({
   const isNetwork = connector instanceof Network;
   const chainIds = (isNetwork
     ? Object.keys(URLS)
-    : Object.keys(CHAINS)
+    : SUPPORT_CHAINID
   ).map((chainId) => Number(chainId));
 
   const [desiredChainId, setDesiredChainId] = useState<number>(
