@@ -34,7 +34,8 @@ import {
   BTCB,
   USDT_BSC,
   DAI_BSC,
-  WBNB
+  WBNB,
+  ETH_BSC
 } from './tokens';
 
 type ChainTokenList = {
@@ -125,6 +126,7 @@ export const COMMON_BASES: ChainCurrencyList = {
   [ChainId.BSC]: [
     NATIVE_CURRENCY[ChainId.BSC],
     WRAPPED_NATIVE_CURRENCY[ChainId.BSC],
+    ETH_BSC,
     DAI_BSC,
     BUSD,
     BTCB,

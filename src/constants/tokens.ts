@@ -7,6 +7,15 @@ import {
 } from '@uniswap/sdk-core';
 import { ChainId } from '../connectors/chains';
 
+// ETH
+export const ETH_BSC = new Token(
+  ChainId.BSC,
+  '0x2170Ed0880ac9A755fd29B2688956BD959F933F8',
+  18,
+  'ETH',
+  'Ethereum Token'
+);
+
 // WETH
 export const WETH_POLYGON = new Token(
   ChainId.POLYGON,
@@ -45,13 +54,6 @@ export const WETH_ARBITRUM_ONE = new Token(
 );
 export const WETH_ARBITRUM_RINKEBY = new Token(
   ChainId.ARBITRUM_RINKEBY,
-  '0xB47e6A5f8b33b3F17603C83a0535A9dcD7E32681',
-  18,
-  'WETH',
-  'Wrapped Ether'
-);
-export const WETH_BSC = new Token(
-  ChainId.BSC,
   '0xB47e6A5f8b33b3F17603C83a0535A9dcD7E32681',
   18,
   'WETH',
