@@ -134,8 +134,8 @@ export function useLiquidity(
 
       const [amount0, amount1] =
         token0 === inputAmount.currency.wrapped.address
-          ? [inputAmount.numerator, outputAmount.numerator]
-          : [outputAmount.numerator, inputAmount.numerator];
+          ? [inputAmount.quotient, outputAmount.quotient]
+          : [outputAmount.quotient, inputAmount.quotient];
 
       const liquidity = getLiquidity(
         JSBI.BigInt(totalSupply ? totalSupply.toHexString() : 0),

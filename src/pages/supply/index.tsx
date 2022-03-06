@@ -16,11 +16,9 @@ import ConfirmSupply from '../../components/confirmSupply';
 import LiquidDetailsDropdown from '../../components/liquidDetailsDropdown';
 import { ROUTER_ADDRESS } from '../../constants/address';
 import { parseCurrencyAmount } from '../../utils/parse';
-import {
-  DEFAULT_CHAIN,
-  ONE_HUNDRED_PERCENT,
-  ZERO_FRACTION
-} from '../../constants/misc';
+import { DEFAULT_CHAIN, ONE_HUNDRED_PERCENT, ZERO } from '../../constants/misc';
+import { getLiquidity } from '../../utils/libarary';
+import JSBI from 'jsbi';
 import style from './index.module.scss';
 
 const SupplyButton = ({
@@ -200,12 +198,19 @@ export default function Supply() {
     if (liquidity) {
       return liquidity;
     } else if (!liquidity && inputAmount && outputAmount) {
+      const liquidity = getLiquidity(
+        ZERO,
+        ZERO,
+        ZERO,
+        JSBI.BigInt(inputAmount.quotient.toString()),
+        JSBI.BigInt(outputAmount.quotient.toString())
+      );
       return {
         noLiquidity: false,
         inputAmount: inputAmount,
         outputAmount: outputAmount,
         rate: new Price({ baseAmount: inputAmount, quoteAmount: outputAmount }),
-        liquidity: ZERO_FRACTION,
+        liquidity,
         share: ONE_HUNDRED_PERCENT
       };
     } else {
