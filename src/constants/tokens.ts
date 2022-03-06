@@ -99,7 +99,7 @@ export const DAI_POLYGON = new Token(
   'Dai Stablecoin'
 );
 export const DAI_BSC = new Token(
-  ChainId.MAINNET,
+  ChainId.BSC,
   '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3',
   18,
   'DAI',
@@ -164,7 +164,7 @@ export const USDT_POLYGON = new Token(
   'Tether USD'
 );
 export const USDT_BSC = new Token(
-  ChainId.MAINNET,
+  ChainId.BSC,
   '0x55d398326f99059fF775485246999027B3197955',
   18,
   'USDT',
@@ -264,14 +264,14 @@ export const MIR = new Token(
   'Wrapped MIR'
 );
 export const BUSD = new Token(
-  ChainId.MAINNET,
+  ChainId.BSC,
   '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
   18,
   'BUSD',
   'Binance USD'
 );
 export const BTCB = new Token(
-  ChainId.MAINNET,
+  ChainId.BSC,
   '0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c',
   18,
   'BTCB',
