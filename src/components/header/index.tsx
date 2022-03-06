@@ -13,6 +13,7 @@ import { NetworksSelect } from '../connectors/NetworksSelect';
 import { NATIVE_CURRENCY } from '../../constants/tokens';
 import { DEFAULT_CHAIN } from '../../constants/misc';
 import style from './index.module.scss';
+import { ChainId } from '../../connectors/chains';
 
 const ConnectBox = ({ onOpen }: { onOpen: () => void }) => {
   const intl = useIntl();
@@ -26,18 +27,20 @@ const ConnectBox = ({ onOpen }: { onOpen: () => void }) => {
 
 const AccountBox = ({
   account,
+  chainId,
   onOpen
 }: {
   account: string;
+  chainId?: number;
   onOpen: () => void;
 }) => {
-  const { chainId } = useActiveWeb3React();
   const balance = useCurrencyBalance(NATIVE_CURRENCY[chainId ?? DEFAULT_CHAIN]);
   return (
     <div className={style.right_account} onClick={onOpen}>
       <Avatar width={27} height={27} edge={15} address={account} />
       <p className={style.right_account_value}>
-        {balance?.toSignificant(6)} ETH
+        {balance?.toSignificant(6)}
+        {NATIVE_CURRENCY[chainId ?? ChainId.BSC].symbol}
       </p>
       <span>{account}</span>
     </div>
@@ -69,6 +72,7 @@ export default function Header() {
           {account ? (
             <AccountBox
               account={account}
+              chainId={chainId}
               onOpen={() => {
                 setAccountVisible(true);
               }}
