@@ -16,7 +16,7 @@ export const SUPPORTED_MENUS: { [key: string]: Menu } = {
     icon: 'iconfont icon-transaction'
   },
   LIMITORDER: {
-    name: 'limitOrder',
+    name: 'limitOrder(BETA)',
     path: '/limitOrder',
     icon: 'iconfont icon-thunderbolt'
   },
