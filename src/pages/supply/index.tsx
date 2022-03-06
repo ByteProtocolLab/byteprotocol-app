@@ -197,7 +197,13 @@ export default function Supply() {
     const outputAmount = parseCurrencyAmount(outputCurrency, outputValue);
     if (liquidity) {
       return liquidity;
-    } else if (!liquidity && inputAmount && outputAmount) {
+    } else if (
+      !liquidity &&
+      inputAmount &&
+      outputAmount &&
+      inputAmount.greaterThan(0) &&
+      outputAmount.greaterThan(0)
+    ) {
       const liquidity = getLiquidity(
         ZERO,
         ZERO,
