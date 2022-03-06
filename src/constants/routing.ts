@@ -29,7 +29,11 @@ import {
   USDT_POLYGON,
   DAI_POLYGON,
   WBTC_POLYGON,
-  WETH_POLYGON_MUMBAI
+  WETH_POLYGON_MUMBAI,
+  BUSD,
+  BTCB,
+  USDT_BSC,
+  DAI_BSC
 } from './tokens';
 
 type ChainTokenList = {
@@ -41,7 +45,8 @@ type ChainCurrencyList = {
 };
 
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
-  [ChainId.MAINNET]: [WETH9[ChainId.MAINNET], DAI, USDC, USDT, WBTC]
+  [ChainId.MAINNET]: [WETH9[ChainId.MAINNET], DAI, USDC, USDT, WBTC],
+  [ChainId.BSC]: [DAI_BSC, BUSD, BTCB, USDT_BSC]
 };
 
 export const ADDITIONAL_BASES: {
@@ -104,6 +109,7 @@ export const COMMON_BASES: ChainCurrencyList = {
   [ChainId.OPTIMISTIC_KOVAN]: [NATIVE_CURRENCY[ChainId.OPTIMISTIC_KOVAN]],
   [ChainId.POLYGON]: [
     NATIVE_CURRENCY[ChainId.POLYGON],
+    WRAPPED_NATIVE_CURRENCY[ChainId.POLYGON],
     WETH_POLYGON,
     USDC_POLYGON,
     DAI_POLYGON,
@@ -117,7 +123,11 @@ export const COMMON_BASES: ChainCurrencyList = {
   ],
   [ChainId.BSC]: [
     NATIVE_CURRENCY[ChainId.BSC],
-    WRAPPED_NATIVE_CURRENCY[ChainId.BSC]
+    WRAPPED_NATIVE_CURRENCY[ChainId.BSC],
+    DAI_BSC,
+    BUSD,
+    BTCB,
+    USDT_BSC
   ]
 };
 

@@ -50,6 +50,13 @@ export const WETH_ARBITRUM_RINKEBY = new Token(
   'WETH',
   'Wrapped Ether'
 );
+export const WETH_BSC = new Token(
+  ChainId.BSC,
+  '0xB47e6A5f8b33b3F17603C83a0535A9dcD7E32681',
+  18,
+  'WETH',
+  'Wrapped Ether'
+);
 
 // AMPL
 export const AMPL = new Token(
@@ -85,6 +92,13 @@ export const DAI_OPTIMISM = new Token(
 export const DAI_POLYGON = new Token(
   ChainId.POLYGON,
   '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
+  18,
+  'DAI',
+  'Dai Stablecoin'
+);
+export const DAI_BSC = new Token(
+  ChainId.MAINNET,
+  '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3',
   18,
   'DAI',
   'Dai Stablecoin'
@@ -144,6 +158,13 @@ export const USDT_POLYGON = new Token(
   ChainId.POLYGON,
   '0xc2132d05d31c914a87c6611c10748aeb04b58e8f',
   6,
+  'USDT',
+  'Tether USD'
+);
+export const USDT_BSC = new Token(
+  ChainId.MAINNET,
+  '0x55d398326f99059fF775485246999027B3197955',
+  18,
   'USDT',
   'Tether USD'
 );
@@ -239,6 +260,20 @@ export const MIR = new Token(
   18,
   'MIR',
   'Wrapped MIR'
+);
+export const BUSD = new Token(
+  ChainId.MAINNET,
+  '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
+  18,
+  'BUSD',
+  'Binance USD'
+);
+export const BTCB = new Token(
+  ChainId.MAINNET,
+  '0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c',
+  18,
+  'BTCB',
+  'Binance BTC'
 );
 
 // WMATIC
