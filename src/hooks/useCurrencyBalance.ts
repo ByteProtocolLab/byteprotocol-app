@@ -1,8 +1,7 @@
 import { aggregate } from '@makerdao/multicall';
 import { useMemo, useState } from 'react';
-import { CONFIG } from '../constants/misc';
+import { CONFIG, DEFAULT_CHAIN } from '../constants/misc';
 import { Currency, CurrencyAmount } from '@uniswap/sdk-core';
-import { ChainId } from '../connectors/chains';
 import useActiveWeb3React from './useActiveWeb3React';
 import { BigNumber } from 'ethers';
 
@@ -49,7 +48,7 @@ export function useCurrencyBalances(currencies: Currency[]) {
         };
       }
     });
-    aggregate(calls, CONFIG[chainId ?? ChainId.MAINNET])
+    aggregate(calls, CONFIG[chainId ?? DEFAULT_CHAIN])
       .then((res: any) => {
         setBalances(res.results.transformed);
       })

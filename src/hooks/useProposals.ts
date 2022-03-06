@@ -1,9 +1,8 @@
 import { aggregate } from '@makerdao/multicall';
 import { BigNumber } from 'ethers';
 import { useMemo, useState } from 'react';
-import { ChainId } from '../connectors/chains';
 import { GOVERNANCE_ADDRESSES } from '../constants/address';
-import { CONFIG } from '../constants/misc';
+import { CONFIG, DEFAULT_CHAIN } from '../constants/misc';
 import { Proposal, ProposalEvent, VoteCastEvent } from '../entities/Proposal';
 import useActiveWeb3React from './useActiveWeb3React';
 import { useGovernorBravoDelegatorContract } from './useContract';
@@ -68,7 +67,7 @@ export function useProposalStates(allProposalIds: string[]) {
         returns: [[id, (val: number) => val]]
       };
     });
-    aggregate(calls, CONFIG[chainId ?? ChainId.MAINNET])
+    aggregate(calls, CONFIG[chainId ?? DEFAULT_CHAIN])
       .then((res: any) => {
         setStates(res.results.transformed);
       })
@@ -146,7 +145,7 @@ export function useGovernance() {
         returns: [['votingDelay']]
       }
     ];
-    aggregate(calls, CONFIG[chainId ?? ChainId.MAINNET])
+    aggregate(calls, CONFIG[chainId ?? DEFAULT_CHAIN])
       .then((res: any) => {
         setGovernance(res.results.transformed);
       })

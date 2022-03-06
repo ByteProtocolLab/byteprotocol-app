@@ -10,10 +10,13 @@ import {
 import { Pair, Trade, FACTORY_ADDRESS } from '@uniswap/v2-sdk';
 import { pairFor, sortTokens } from '../utils/libarary';
 import { isTradeBetter } from '../utils/isTradeBetter';
-import { BETTER_TRADE_LESS_HOPS_THRESHOLD, CONFIG } from '../constants/misc';
+import {
+  BETTER_TRADE_LESS_HOPS_THRESHOLD,
+  CONFIG,
+  DEFAULT_CHAIN
+} from '../constants/misc';
 import { useAllCurrencyCombinations } from './useAllCurrencyCombinations';
 import { isZero } from '../utils/common';
-import { ChainId } from '../connectors/chains';
 import useActiveWeb3React from './useActiveWeb3React';
 
 export function useBestTrade(
@@ -157,7 +160,7 @@ export function usePairAddresses(currencies: [Token, Token][]) {
         returns: [[pairAddress]]
       };
     });
-    aggregate(calls, CONFIG[chainId ?? ChainId.MAINNET])
+    aggregate(calls, CONFIG[chainId ?? DEFAULT_CHAIN])
       .then((res: any) => {
         const pairAddresses = Object.keys(res.results.original).filter(
           (key) => {
@@ -197,7 +200,7 @@ export function usePairReserves(pairAddresses: string[]) {
       };
     });
 
-    const watcher = createWatcher(calls, CONFIG[chainId ?? ChainId.MAINNET]);
+    const watcher = createWatcher(calls, CONFIG[chainId ?? DEFAULT_CHAIN]);
 
     watcher.batch().subscribe((updates) => {
       onPairReserves(updates);

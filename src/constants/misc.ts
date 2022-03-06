@@ -46,6 +46,8 @@ export const CONFIG: { [chainId: number]: any } = {
   }
 };
 
+export const DEFAULT_CHAIN = ChainId.BSC;
+
 export const DEFAULT_CALL_GAS_REQUIRED = 1_000_000;
 
 export const DEFAULT_DEADLINE_FROM_NOW = 60 * 30;

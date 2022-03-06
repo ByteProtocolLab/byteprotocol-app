@@ -3,10 +3,9 @@ import { getAmount, pairFor } from '../utils/libarary';
 import useActiveWeb3React from './useActiveWeb3React';
 import { aggregate } from '@makerdao/multicall';
 import { BigNumber } from 'ethers';
-import { CONFIG } from '../constants/misc';
+import { CONFIG, DEFAULT_CHAIN } from '../constants/misc';
 import { Currency, Fraction, CurrencyAmount } from '@uniswap/sdk-core';
 import JSBI from 'jsbi';
-import { ChainId } from '../connectors/chains';
 
 export interface RedeemCallParam {
   currencyAmountA: CurrencyAmount<Currency>;
@@ -54,7 +53,7 @@ export function useRemoveLiquidityCallParams(
         returns: [['decimals']]
       }
     ];
-    aggregate(calls, CONFIG[chainId ?? ChainId.MAINNET])
+    aggregate(calls, CONFIG[chainId ?? DEFAULT_CHAIN])
       .then((res: any) => {
         const data = res.results.transformed;
         const liquidity: BigNumber = data['liquidity'];

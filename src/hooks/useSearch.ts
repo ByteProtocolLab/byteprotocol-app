@@ -1,9 +1,8 @@
 import { useMemo, useState } from 'react';
 import { BigNumber } from 'ethers';
-import { CONFIG } from '../constants/misc';
+import { CONFIG, DEFAULT_CHAIN } from '../constants/misc';
 import { EXTENDS_TOKENS } from '../constants/routing';
 import { Currency, Token } from '@uniswap/sdk-core';
-import { ChainId } from '../connectors/chains';
 import account from '../components/account';
 import { aggregate } from '@makerdao/multicall';
 import useActiveWeb3React from './useActiveWeb3React';
@@ -11,7 +10,7 @@ import useActiveWeb3React from './useActiveWeb3React';
 export function useSearch(addressWithSymbol: string): Currency[] {
   const { chainId } = useActiveWeb3React();
   const [currencies, setCurrencies] = useState<Currency[]>(
-    EXTENDS_TOKENS[chainId ?? ChainId.MAINNET]
+    EXTENDS_TOKENS[chainId ?? DEFAULT_CHAIN]
   );
   useMemo(() => {
     const regexp = new RegExp('^(0x[a-fA-F0-9]{40})$');
@@ -33,10 +32,10 @@ export function useSearch(addressWithSymbol: string): Currency[] {
           returns: [['name']]
         }
       ];
-      aggregate(calls, CONFIG[chainId ?? ChainId.MAINNET])
+      aggregate(calls, CONFIG[chainId ?? DEFAULT_CHAIN])
         .then((res) => {
           const token = new Token(
-            chainId ?? ChainId.MAINNET,
+            chainId ?? DEFAULT_CHAIN,
             addressWithSymbol,
             res.results.transformed['decimals'],
             res.results.transformed['symbol'],
@@ -48,17 +47,15 @@ export function useSearch(addressWithSymbol: string): Currency[] {
           setCurrencies([]);
         });
     } else if (addressWithSymbol) {
-      const tokens = EXTENDS_TOKENS[chainId ?? ChainId.MAINNET].filter(
-        (item) => {
-          return (
-            item.symbol?.toLocaleLowerCase() ===
-            addressWithSymbol.toLocaleLowerCase()
-          );
-        }
-      );
+      const tokens = EXTENDS_TOKENS[chainId ?? DEFAULT_CHAIN].filter((item) => {
+        return (
+          item.symbol?.toLocaleLowerCase() ===
+          addressWithSymbol.toLocaleLowerCase()
+        );
+      });
       setCurrencies(tokens);
     } else {
-      setCurrencies(EXTENDS_TOKENS[chainId ?? ChainId.MAINNET]);
+      setCurrencies(EXTENDS_TOKENS[chainId ?? DEFAULT_CHAIN]);
     }
   }, [addressWithSymbol, chainId]);
   return currencies;

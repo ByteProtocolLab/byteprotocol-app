@@ -1,9 +1,8 @@
 import { aggregate } from '@makerdao/multicall';
 import { useMemo, useState } from 'react';
 import { PRICE_FEEDS } from '../constants/feeds';
-import { CONFIG } from '../constants/misc';
+import { CONFIG, DEFAULT_CHAIN } from '../constants/misc';
 import { Currency } from '@uniswap/sdk-core';
-import { ChainId } from '../connectors/chains';
 import useActiveWeb3React from './useActiveWeb3React';
 
 export function usePriceFeed(currencies: Currency[]) {
@@ -21,7 +20,7 @@ export function usePriceFeed(currencies: Currency[]) {
           returns: [[item.wrapped.address, (val: number) => val / 10 ** 8]]
         };
       });
-    aggregate(calls, CONFIG[chainId ?? ChainId.MAINNET])
+    aggregate(calls, CONFIG[chainId ?? DEFAULT_CHAIN])
       .then((res: any) => {
         setPriceFeed(res.results.transformed);
       })

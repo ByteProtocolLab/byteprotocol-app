@@ -1,8 +1,7 @@
 import { createWatcher, IUpdate } from '@makerdao/multicall';
 import { BigNumber } from 'ethers';
 import { useCallback, useEffect, useState } from 'react';
-import { ChainId } from '../connectors/chains';
-import { CONFIG } from '../constants/misc';
+import { CONFIG, DEFAULT_CHAIN } from '../constants/misc';
 import useActiveWeb3React from './useActiveWeb3React';
 
 export function useTotalSupply(pairAddress?: string): BigNumber | undefined {
@@ -23,7 +22,7 @@ export function useTotalSupply(pairAddress?: string): BigNumber | undefined {
         returns: [[pairAddress + '_totalSupply']]
       }
     ];
-    const watcher = createWatcher(calls, CONFIG[chainId ?? ChainId.MAINNET]);
+    const watcher = createWatcher(calls, CONFIG[chainId ?? DEFAULT_CHAIN]);
     watcher.subscribe((update) => {
       onReserves(update);
     });
@@ -55,7 +54,7 @@ export function useGetReserves(
         returns: [[pairAddress + '_reserve0'], [pairAddress + '_reserve1']]
       }
     ];
-    const watcher = createWatcher(calls, CONFIG[chainId ?? ChainId.MAINNET]);
+    const watcher = createWatcher(calls, CONFIG[chainId ?? DEFAULT_CHAIN]);
     watcher.batch().subscribe((updates) => {
       onReserves(updates);
     });

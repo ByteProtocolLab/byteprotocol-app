@@ -1,9 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { BigNumber } from 'ethers';
 import { createWatcher, IUpdate } from '@makerdao/multicall';
-import { CONFIG } from '../constants/misc';
+import { CONFIG, DEFAULT_CHAIN } from '../constants/misc';
 import useActiveWeb3React from './useActiveWeb3React';
-import { ChainId } from '../connectors/chains';
 
 export function useCurrentBlockTimestamp(): BigNumber | undefined {
   const { chainId } = useActiveWeb3React();
@@ -22,7 +21,7 @@ export function useCurrentBlockTimestamp(): BigNumber | undefined {
       }
     ];
 
-    const watcher = createWatcher(calls, CONFIG[chainId ?? ChainId.MAINNET]);
+    const watcher = createWatcher(calls, CONFIG[chainId ?? DEFAULT_CHAIN]);
 
     watcher.subscribe((update) => {
       onBlockTimestamp(update);
