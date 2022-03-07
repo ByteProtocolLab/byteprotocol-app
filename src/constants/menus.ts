@@ -15,11 +15,6 @@ export const SUPPORTED_MENUS: { [key: string]: Menu } = {
     path: '/pool',
     icon: 'iconfont icon-transaction'
   },
-  LIMITORDER: {
-    name: 'limitOrder',
-    path: '/limitOrder',
-    icon: 'iconfont icon-thunderbolt'
-  },
   VOTE: {
     name: 'vote',
     path: '/dao',
