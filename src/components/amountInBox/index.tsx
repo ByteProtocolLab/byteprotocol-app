@@ -70,18 +70,23 @@ export default function AmountInBox({
               setTokenVisible(true);
             }}
           >
-            <div
-              className={style.select_content_box_play_icon}
-              style={{
-                backgroundImage: currency?.wrapped.address
-                  ? `url(https://tokens.1inch.io/${
-                      currency?.isNative
-                        ? '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
-                        : currency?.wrapped.address.toLowerCase()
-                    }.png)`
-                  : undefined
-              }}
-            />
+            <div className={style.select_content_box_play_icon}>
+              <span className={style.select_content_box_play_icon_title}>
+                {currency?.symbol?.substring(0, 1)}
+              </span>
+              <i
+                className={style.select_content_box_play_icon_picture}
+                style={{
+                  backgroundImage: currency?.wrapped.address
+                    ? `url(https://tokens.1inch.io/${
+                        currency?.isNative
+                          ? '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
+                          : currency?.wrapped.address.toLowerCase()
+                      }.png)`
+                    : undefined
+                }}
+              />
+            </div>
             <p className={style.select_content_box_play_token}>
               {currency?.symbol ?? chooseLabel}
             </p>
