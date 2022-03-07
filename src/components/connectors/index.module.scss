@@ -92,10 +92,10 @@
     cursor: pointer;
     background: none;
     border: none;
-    border-left: 0.05rem solid #e3e3e3;
-    border-left: 0.05rem solid var(--border-01);
-    background-color: #41b66d;
-    color: #ffffff;
+    border: 0.05rem solid #e3e3e3;
+    border: 0.05rem solid var(--border-01);
+    background-color: #bac7da;
+    background-color: var(--btn-bg-01);
 
     &_danger {
       color: #ffffff;
@@ -110,7 +110,7 @@
     }
 
     &_active {
-      background-color: #41b66d;
+      background-color: #f3f3f3;
     }
 
     i {
