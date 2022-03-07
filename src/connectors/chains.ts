@@ -3,6 +3,7 @@ import ARBTTRUM_ICON_URL from '../assets/images/arbitrum.svg';
 import POLYGON_ICON_URL from '../assets/images/polygon.svg';
 import OPTIMISTIC_ICON_URL from '../assets/images/optimistic.svg';
 import ETHEREUM_ICON_URL from '../assets/images/ethereum.png';
+import BSC_ICON_URL from '../assets/images/bsc.svg';
 
 export enum ChainId {
   MAINNET = 1,
@@ -201,7 +202,8 @@ export const CHAINS: {
     urls: ['https://rpc.ankr.com/bsc'].filter((url) => url !== undefined),
     name: 'BSC',
     nativeCurrency: BNB,
-    blockExplorerUrls: ['https://mumbai.polygonscan.com']
+    blockExplorerUrls: ['https://mumbai.polygonscan.com'],
+    iconURL: BSC_ICON_URL
   }
 };
 
