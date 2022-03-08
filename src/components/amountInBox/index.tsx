@@ -3,6 +3,7 @@ import Tokens from '../tokens';
 import Input from '../input';
 import { Currency } from '@uniswap/sdk-core';
 import style from './index.module.scss';
+import { ChainId } from '../../connectors/chains';
 
 export default function AmountInBox({
   operateLabel,
@@ -79,7 +80,8 @@ export default function AmountInBox({
                 style={{
                   backgroundImage: currency?.wrapped.address
                     ? `url(https://tokens.1inch.io/${
-                        currency?.isNative
+                        currency?.isNative &&
+                        currency.chainId === ChainId.MAINNET
                           ? '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
                           : currency?.wrapped.address.toLowerCase()
                       }.png)`

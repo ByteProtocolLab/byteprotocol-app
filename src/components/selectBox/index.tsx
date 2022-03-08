@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Currency } from '@uniswap/sdk-core';
 import Tokens from '../tokens';
 import style from './index.module.scss';
+import { ChainId } from '../../connectors/chains';
 
 export default function SelectBox({
   chooseLabel,
@@ -32,7 +33,7 @@ export default function SelectBox({
               style={{
                 backgroundImage: currency?.wrapped.address
                   ? `url(https://tokens.1inch.io/${
-                      currency?.isNative
+                      currency?.isNative && currency.chainId === ChainId.MAINNET
                         ? '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
                         : currency?.wrapped.address.toLowerCase()
                     }.png)`
