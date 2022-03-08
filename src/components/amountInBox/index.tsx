@@ -3,7 +3,7 @@ import Tokens from '../tokens';
 import Input from '../input';
 import { Currency } from '@uniswap/sdk-core';
 import style from './index.module.scss';
-import { ChainId } from '../../connectors/chains';
+import Token from '../token';
 
 export default function AmountInBox({
   operateLabel,
@@ -71,24 +71,7 @@ export default function AmountInBox({
               setTokenVisible(true);
             }}
           >
-            <div className={style.select_content_box_play_icon}>
-              <span className={style.select_content_box_play_icon_title}>
-                {currency?.symbol?.substring(0, 1)}
-              </span>
-              <i
-                className={style.select_content_box_play_icon_picture}
-                style={{
-                  backgroundImage: currency?.wrapped.address
-                    ? `url(https://tokens.1inch.io/${
-                        currency?.isNative &&
-                        currency.chainId === ChainId.MAINNET
-                          ? '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
-                          : currency?.wrapped.address.toLowerCase()
-                      }.png)`
-                    : undefined
-                }}
-              />
-            </div>
+            <Token currency={currency} />
             <p className={style.select_content_box_play_token}>
               {currency?.symbol ?? chooseLabel}
             </p>

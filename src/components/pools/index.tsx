@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import ConfirmRedeem from '../confirmRedeem';
 import { Currency } from '@uniswap/sdk-core';
+import Token from '../token';
 import style from './index.module.scss';
-import { ChainId } from '../../connectors/chains';
 
 export default function Pools({
   pairs
@@ -30,31 +30,12 @@ export default function Pools({
               <div className={style.item_header}>
                 <div className={style.left}>
                   <div className={style.left_lp}>
-                    <div
-                      className={style.token}
-                      style={{
-                        backgroundImage: pairs[key][0].wrapped.address
-                          ? `url(https://tokens.1inch.io/${
-                              pairs[key][0].isNative &&
-                              pairs[key][0].chainId === ChainId.MAINNET
-                                ? '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
-                                : pairs[key][0].wrapped.address.toLowerCase()
-                            }.png)`
-                          : undefined
-                      }}
-                    />
-                    <div
-                      className={style.token}
-                      style={{
-                        backgroundImage: pairs[key][1].wrapped.address
-                          ? `url(https://tokens.1inch.io/${
-                              pairs[key][1].isNative
-                                ? '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
-                                : pairs[key][1].wrapped.address.toLowerCase()
-                            }.png)`
-                          : undefined
-                      }}
-                    />
+                    <div className={style.token}>
+                      <Token currency={pairs[key][0]} />
+                    </div>
+                    <div className={style.token}>
+                      <Token currency={pairs[key][1]} />
+                    </div>
                   </div>
                   <div className={style.left_symbol}>
                     <span>

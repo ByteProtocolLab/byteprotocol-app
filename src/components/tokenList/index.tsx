@@ -1,8 +1,8 @@
 import React from 'react';
 import { Currency, Fraction } from '@uniswap/sdk-core';
 import { useIntl } from 'react-intl';
+import Token from '../token';
 import style from './index.module.scss';
-import { ChainId } from '../../connectors/chains';
 
 export default function TokenList({
   currencies,
@@ -30,23 +30,7 @@ export default function TokenList({
           >
             <div className={style.item_box}>
               <div className={style.item_box_icon}>
-                <div className={style.item_box_icon_img}>
-                  <span className={style.item_box_icon_img_title}>
-                    {item.symbol?.substring(0, 1)}
-                  </span>
-                  <i
-                    className={style.item_box_icon_img_picture}
-                    style={{
-                      backgroundImage: item.wrapped.address
-                        ? `url(https://tokens.1inch.io/${
-                            item.isNative && item.chainId === ChainId.MAINNET
-                              ? '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
-                              : item.wrapped.address.toLowerCase()
-                          }.png)`
-                        : undefined
-                    }}
-                  />
-                </div>
+                <Token currency={item} />
               </div>
               <div className={style.item_box_info}>
                 <p className={style.item_box_info_symbol}>{item.symbol}</p>
