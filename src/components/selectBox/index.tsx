@@ -23,18 +23,23 @@ export default function SelectBox({
         }}
       >
         <span className={style.box_select}>
-          <div
-            className={style.box_select_icon}
-            style={{
-              backgroundImage: currency?.wrapped.address
-                ? `url(https://tokens.1inch.io/${
-                    currency?.isNative
-                      ? '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
-                      : currency?.wrapped.address.toLowerCase()
-                  }.png)`
-                : undefined
-            }}
-          />
+          <div className={style.box_select_icon}>
+            <span className={style.box_select_icon_title}>
+              {currency?.symbol?.substring(0, 1)}
+            </span>
+            <i
+              className={style.box_select_icon_picture}
+              style={{
+                backgroundImage: currency?.wrapped.address
+                  ? `url(https://tokens.1inch.io/${
+                      currency?.isNative
+                        ? '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
+                        : currency?.wrapped.address.toLowerCase()
+                    }.png)`
+                  : undefined
+              }}
+            />
+          </div>
           <p className={style.box_select_token}>
             {currency?.symbol ? currency?.symbol : chooseLabel}
           </p>
