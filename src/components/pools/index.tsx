@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl';
 import ConfirmRedeem from '../confirmRedeem';
 import { Currency } from '@uniswap/sdk-core';
 import style from './index.module.scss';
+import { ChainId } from '../../connectors/chains';
 
 export default function Pools({
   pairs
@@ -34,7 +35,8 @@ export default function Pools({
                       style={{
                         backgroundImage: pairs[key][0].wrapped.address
                           ? `url(https://tokens.1inch.io/${
-                              pairs[key][0].isNative
+                              pairs[key][0].isNative &&
+                              pairs[key][0].chainId === ChainId.MAINNET
                                 ? '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
                                 : pairs[key][0].wrapped.address.toLowerCase()
                             }.png)`
