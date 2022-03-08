@@ -110,7 +110,8 @@
     }
 
     &_active {
-      background-color: #f3f3f3;
+      background-color: #bac7da;
+      background-color: var(--btn-bg-01);
     }
 
     i {
