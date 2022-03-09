@@ -71,11 +71,12 @@ export function getLiquidity(
 ) {
   let liquidity;
   if (JSBI.EQ(totalSupply, JSBI.BigInt(0))) {
-    liquidity = JSBI.BigInt(
-      Math.floor(
-        Math.sqrt(JSBI.toNumber(JSBI.multiply(amount0, amount1))) -
-          MINIMUM_LIQUIDITY
-      )
+    liquidity = JSBI.subtract(
+      JSBI.exponentiate(
+        JSBI.multiply(amount0, amount1),
+        JSBI.divide(JSBI.BigInt(1), JSBI.BigInt(2))
+      ),
+      JSBI.BigInt(MINIMUM_LIQUIDITY)
     );
   } else {
     const x = JSBI.divide(JSBI.multiply(amount0, totalSupply), reserve0);
