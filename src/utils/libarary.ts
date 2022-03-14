@@ -71,11 +71,9 @@ export function getLiquidity(
 ) {
   let liquidity;
   if (JSBI.EQ(totalSupply, JSBI.BigInt(0))) {
+    console.log(JSBI.divide(JSBI.BigInt(1), JSBI.BigInt(2)));
     liquidity = JSBI.subtract(
-      JSBI.exponentiate(
-        JSBI.multiply(amount0, amount1),
-        JSBI.divide(JSBI.BigInt(1), JSBI.BigInt(2))
-      ),
+      sqrt(JSBI.multiply(amount0, amount1)),
       JSBI.BigInt(MINIMUM_LIQUIDITY)
     );
   } else {
@@ -99,4 +97,20 @@ export function getAmount(
     'INSUFFICIENT_LIQUIDITY_BURNED'
   );
   return { amount0, amount1 };
+}
+
+export function sqrt(y: JSBI): JSBI {
+  if (JSBI.greaterThan(y, JSBI.BigInt(3))) {
+    let z = y;
+    let x = JSBI.add(JSBI.divide(y, JSBI.BigInt(2)), JSBI.BigInt(1));
+    while (JSBI.lessThan(x, z)) {
+      z = x;
+      x = JSBI.divide(JSBI.add(JSBI.divide(y, x), x), JSBI.BigInt(2));
+    }
+    return z;
+  } else if (JSBI.notEqual(y, JSBI.BigInt(0))) {
+    return JSBI.BigInt(1);
+  } else {
+    return JSBI.BigInt(1);
+  }
 }
