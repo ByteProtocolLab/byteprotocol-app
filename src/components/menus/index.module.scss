@@ -14,7 +14,6 @@
     text-align: center;
     padding: 0.4rem;
     box-sizing: border-box;
-    display: inline-block;
     font-size: 0.9rem;
     cursor: pointer;
     text-decoration: none;
@@ -28,6 +27,8 @@
       font-weight: bold;
       color: #666666;
       color: var(--text-02);
+      display: flex;
+      align-items: center;
     }
 
     &_content {
