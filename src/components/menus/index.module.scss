@@ -38,14 +38,14 @@
       left: 0;
       background-color: #ffffff;
       background-color: var(--bg-09);
-      border-radius: 0.3rem;
+      border-radius: 0.5rem;
 
       &_sub {
         display: block;
         text-align: left;
         padding: 0.4rem;
         margin: 0.25rem;
-        border-radius: 0.3rem;
+        border-radius: 0.5rem;
 
         &_name {
           display: block;
@@ -75,6 +75,17 @@
     &_active {
       background-color: #f3f5fa;
       background-color: var(--bg-04);
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .wrapper {
+    .item {
+      &_content {
+        top: auto;
+        bottom: 120%;
+      }
     }
   }
 }
