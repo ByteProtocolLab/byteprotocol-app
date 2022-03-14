@@ -2,13 +2,26 @@ export interface Menu {
   name: string;
   path: string;
   icon: string;
+  children?: Menu[];
 }
 
 export const SUPPORTED_MENUS: { [key: string]: Menu } = {
-  SWAP: {
+  TRADE: {
     name: 'swap',
-    path: '/swap',
-    icon: 'iconfont icon-thunderbolt'
+    path: '/',
+    icon: 'iconfont icon-thunderbolt',
+    children: [
+      {
+        name: 'swap',
+        path: '/swap',
+        icon: 'iconfont icon-thunderbolt'
+      },
+      {
+        name: 'limitOrder',
+        path: '/limitOrder',
+        icon: 'iconfont icon-thunderbolt'
+      }
+    ]
   },
   POOL: {
     name: 'pool',

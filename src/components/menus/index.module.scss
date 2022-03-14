@@ -22,12 +22,20 @@
 
     color: #333;
     color: var(--text-02);
+    position: relative;
 
     &_name {
       font-size: 0.9rem;
       font-weight: bold;
       color: #666666;
       color: var(--text-02);
+    }
+
+    &_content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
     }
 
     &:hover {
