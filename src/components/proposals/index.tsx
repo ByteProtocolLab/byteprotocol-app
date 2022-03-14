@@ -47,7 +47,7 @@ export default function Proposals({ proposals }: { proposals: Proposal[] }) {
                     </p>
                   ) : item.state === 2 ? (
                     <p className={style.item_right_cancel}>
-                      <i className="iconfont icon-check" />
+                      <i className="iconfont icon-close" />
                       {ProposalState[item.state]}
                     </p>
                   ) : (
