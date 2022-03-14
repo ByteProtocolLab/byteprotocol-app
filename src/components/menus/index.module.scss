@@ -9,7 +9,6 @@
 
   .item {
     display: inline-block;
-    border-radius: 0.5rem;
     margin: 0.25rem;
     border-radius: 0.3rem;
     text-align: center;
@@ -33,9 +32,32 @@
 
     &_content {
       position: absolute;
-      top: 0;
+      top: 130%;
       left: 0;
-      width: 100%;
+      background-color: #ffffff;
+      background-color: var(--bg-09);
+      border-radius: 0.3rem;
+
+      &_sub {
+        display: block;
+        text-align: left;
+        padding: 0.4rem;
+        margin: 0.25rem;
+
+        &_name {
+          display: block;
+          width: 8rem;
+          font-size: 0.9rem;
+          font-weight: bold;
+          color: #666666;
+          color: var(--text-02);
+        }
+
+        &:hover {
+          background-color: #f3f5fa;
+          background-color: var(--bg-04);
+        }
+      }
     }
 
     &:hover {

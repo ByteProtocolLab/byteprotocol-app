@@ -29,8 +29,12 @@ export default function Menus({ initIndex }: { initIndex: number }) {
           </span>
           <div className={style.item_content}>
             {SUPPORTED_MENUS[key].children?.map((subItem, index) => (
-              <Link to={subItem.path} key={index}>
-                <span className={style.item_name}>
+              <Link
+                to={subItem.path}
+                key={index}
+                className={style.item_content_sub}
+              >
+                <span className={style.item_content_sub_name}>
                   {intl.formatMessage({ id: subItem.name })}
                 </span>
               </Link>
