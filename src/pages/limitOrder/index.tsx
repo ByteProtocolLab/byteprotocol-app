@@ -11,11 +11,11 @@ import GasPrice from '../../components/gasPrice';
 import TabFooter from '../../components/tabFooter';
 import Select from '../../components/select';
 import RatioBox from '../../components/ratioBox';
-import style from './index.module.scss';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { ROUTER_ADDRESS } from '../../constants/address';
 import { DEFAULT_CHAIN } from '../../constants/misc';
 import { parseCurrencyAmount } from '../../utils/parse';
+import style from './index.module.scss';
 
 const SwapButton = ({
   intl,
@@ -128,6 +128,14 @@ export default function LimitOrder() {
   ] = useState<string>();
   const inputBalance = useCurrencyBalance(inputCurrency);
   const outputBalance = useCurrencyBalance(outputCurrency);
+  const expireTimes = [
+    { label: '1 Hour', value: '0' },
+    { label: '24 Hour', value: '1' },
+    { label: '3 Days', value: '2' },
+    { label: '7 Days', value: '3' },
+    { label: '30 Days', value: '4' }
+  ];
+
   const { approve } = useApproveCallback(
     parseCurrencyAmount(inputCurrency, inputValue),
     ROUTER_ADDRESS[chainId ?? DEFAULT_CHAIN]
@@ -200,7 +208,6 @@ export default function LimitOrder() {
                 balance={inputBalance?.toExact()}
                 currency={inputCurrency}
                 approve={approve}
-                bgVisible
                 onChangeValue={setInputAmount}
                 onMax={setInputMax}
                 onChoose={chooseInput}
@@ -221,13 +228,7 @@ export default function LimitOrder() {
                   </span>
                   <Select
                     value={expireIn}
-                    options={[
-                      { label: '1 Hour', value: '0' },
-                      { label: '24 Hour', value: '1' },
-                      { label: '3 Days', value: '2' },
-                      { label: '7 Days', value: '3' },
-                      { label: '30 Days', value: '4' }
-                    ]}
+                    options={expireTimes}
                     onChange={(value: string) => {
                       setExpireIn(value);
                     }}
@@ -245,6 +246,7 @@ export default function LimitOrder() {
                 balance={outputBalance?.toExact()}
                 currency={outputCurrency}
                 approve={true}
+                bgVisible
                 onChangeValue={setOutputAmount}
                 onMax={setOutputMax}
                 onChoose={chooseOutput}
