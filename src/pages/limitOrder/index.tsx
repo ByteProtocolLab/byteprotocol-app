@@ -25,7 +25,6 @@ const SwapButton = ({
   outputCurrency,
   inputValue,
   inputBalance,
-  approve,
   allowSwap,
   setReviewVisible
 }: {
@@ -36,7 +35,6 @@ const SwapButton = ({
   outputCurrency?: Currency;
   inputValue?: CurrencyAmount<Currency>;
   inputBalance?: CurrencyAmount<Currency>;
-  approve: boolean;
   allowSwap: boolean;
   setReviewVisible: (visible: boolean) => void;
 }) => {
@@ -208,7 +206,7 @@ export default function LimitOrder() {
                 currency={inputCurrency}
                 approve={approve}
                 bgVisible
-                onChangeValue={setInputValue}
+                onChangeValue={setInputAmount}
                 onMax={setInputMax}
                 onChoose={chooseInput}
               />
@@ -252,7 +250,7 @@ export default function LimitOrder() {
                 balance={outputBalance?.toExact()}
                 currency={outputCurrency}
                 approve={true}
-                onChangeValue={setOutputValue}
+                onChangeValue={setOutputAmount}
                 onMax={setOutputMax}
                 onChoose={chooseOutput}
               />
@@ -260,6 +258,7 @@ export default function LimitOrder() {
             <div>
               {addressVisible && (
                 <Input
+                  value={recipientAddressOrName}
                   placeholder={intl.formatMessage({ id: 'swapReceiveAddress' })}
                   onChange={setRecipient}
                   className={style.address}
@@ -285,7 +284,6 @@ export default function LimitOrder() {
                 outputCurrency={outputCurrency}
                 inputBalance={inputBalance}
                 inputValue={parseCurrencyAmount(inputCurrency, inputValue)}
-                approve={approve}
                 allowSwap={false}
                 setReviewVisible={setReviewVisible}
               />
