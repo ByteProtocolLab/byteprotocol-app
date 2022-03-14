@@ -31,6 +31,7 @@
     }
 
     &_content {
+      display: none;
       position: absolute;
       top: 130%;
       left: 0;
@@ -43,6 +44,7 @@
         text-align: left;
         padding: 0.4rem;
         margin: 0.25rem;
+        border-radius: 0.3rem;
 
         &_name {
           display: block;
@@ -63,6 +65,10 @@
     &:hover {
       background-color: #f3f5fa;
       background-color: var(--bg-04);
+    }
+
+    &:hover .item_content {
+      display: block;
     }
 
     &_active {

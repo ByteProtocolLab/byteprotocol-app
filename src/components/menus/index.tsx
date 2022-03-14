@@ -26,6 +26,9 @@ export default function Menus({ initIndex }: { initIndex: number }) {
         >
           <span className={style.item_name}>
             {intl.formatMessage({ id: SUPPORTED_MENUS[key].name })}
+            {SUPPORTED_MENUS[key].children && (
+              <i className="iconfont icon-down" />
+            )}
           </span>
           <div className={style.item_content}>
             {SUPPORTED_MENUS[key].children?.map((subItem, index) => (
