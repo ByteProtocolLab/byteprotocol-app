@@ -39,7 +39,7 @@ const AccountBox = ({
     <div className={style.right_account} onClick={onOpen}>
       <Avatar width={27} height={27} edge={15} address={account} />
       <p className={style.right_account_value}>
-        {`${balance?.toSignificant(6)} 
+        {`${balance?.toSignificant(6) ?? ''} 
         ${NATIVE_CURRENCY[chainId ?? ChainId.BSC].symbol}`}
       </p>
       <span>{account}</span>
