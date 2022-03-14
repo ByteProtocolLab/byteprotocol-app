@@ -16,7 +16,7 @@ export default function RatioBox({
   rightLabel: string;
   chooseLabel: string;
   value: number;
-  currency: Currency;
+  currency?: Currency;
   approve: boolean;
   onChangeValue: (e: any) => void;
 }) {
@@ -34,7 +34,7 @@ export default function RatioBox({
           className={style.select_content_input}
           onChange={onChangeValue}
         />
-        {!currency.isNative && !approve && (
+        {!currency?.isNative && !approve && (
           <i
             className={[
               `${style.select_content_lock}`,
@@ -45,7 +45,7 @@ export default function RatioBox({
         <div className={style.select_content_box}>
           <span className={style.select_content_box_play}>
             <p className={style.select_content_box_play_token}>
-              {currency.symbol ? currency.symbol : chooseLabel}
+              {currency?.symbol ?? chooseLabel}
             </p>
           </span>
         </div>

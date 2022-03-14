@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useApproveCallback } from '../../hooks/useApproveCallback';
 import { useCurrencyBalance } from '../../hooks/useCurrencyBalance';
-import { Currency, CurrencyAmount } from '@uniswap/sdk-core';
-import { NATIVE_CURRENCY, USDC } from '../../constants/tokens';
+import { TradeType, Currency, CurrencyAmount } from '@uniswap/sdk-core';
 import Setting from '../../components/setting';
 import SlippageLimit from '../../components/slippageLimit';
 import Input from '../../components/input';
@@ -16,6 +15,87 @@ import style from './index.module.scss';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { ROUTER_ADDRESS } from '../../constants/address';
 import { DEFAULT_CHAIN } from '../../constants/misc';
+import { parseCurrencyAmount } from '../../utils/parse';
+
+const SwapButton = ({
+  intl,
+  active,
+  account,
+  inputCurrency,
+  outputCurrency,
+  inputValue,
+  inputBalance,
+  approve,
+  allowSwap,
+  setReviewVisible
+}: {
+  intl: any;
+  active: boolean;
+  account?: string;
+  inputCurrency?: Currency;
+  outputCurrency?: Currency;
+  inputValue?: CurrencyAmount<Currency>;
+  inputBalance?: CurrencyAmount<Currency>;
+  approve: boolean;
+  allowSwap: boolean;
+  setReviewVisible: (visible: boolean) => void;
+}) => {
+  if (account && active) {
+    if (inputCurrency?.wrapped.address && outputCurrency?.wrapped.address) {
+      if (inputCurrency?.wrapped.address === outputCurrency?.wrapped.address) {
+        return (
+          <button type="button" className={style.sumbit_disablebtn}>
+            {intl.formatMessage({ id: 'swap' })}
+          </button>
+        );
+      } else if (!inputValue || !inputValue.greaterThan(0)) {
+        return (
+          <button type="button" className={style.sumbit_disablebtn}>
+            {intl.formatMessage({ id: 'enterAmount' })}
+          </button>
+        );
+      } else if (!inputBalance || inputBalance.lessThan(inputValue)) {
+        return (
+          <button type="button" className={style.sumbit_disablebtn}>
+            {intl.formatMessage({ id: 'insufficientBalance' })}
+          </button>
+        );
+      } else {
+        if (allowSwap) {
+          return (
+            <button
+              type="button"
+              className={style.sumbit_btn}
+              onClick={() => {
+                setReviewVisible(true);
+              }}
+            >
+              {intl.formatMessage({ id: 'swap' })}
+            </button>
+          );
+        } else {
+          return (
+            <button type="button" className={style.sumbit_disablebtn}>
+              {intl.formatMessage({ id: 'swap' })}
+            </button>
+          );
+        }
+      }
+    } else {
+      return (
+        <button type="button" className={style.sumbit_disablebtn}>
+          {intl.formatMessage({ id: 'chooseToken' })}
+        </button>
+      );
+    }
+  } else {
+    return (
+      <button type="button" className={style.sumbit_disablebtn}>
+        {intl.formatMessage({ id: 'connectWallet' })}
+      </button>
+    );
+  }
+};
 
 export interface Order {
   inputCurrency: Currency;
@@ -31,112 +111,86 @@ export interface Order {
 
 export default function LimitOrder() {
   const intl = useIntl();
-  const { active, chainId } = useActiveWeb3React();
+  const { account, active, chainId } = useActiveWeb3React();
   const [settingVisible, setSettingVisible] = useState(false);
   const [slippageLimitVisible, setSlippageLimitVisible] = useState(false);
   const [gasPriceVisible, setGasPriceVisible] = useState(false);
   const [addressVisible, setAddressVisible] = useState(false);
+  const [reviewVisible, setReviewVisible] = useState(false);
   const [expireIn, setExpireIn] = useState('0');
-  const [swap, setSwap] = useState<Order>({
-    inputCurrency: NATIVE_CURRENCY[chainId ?? DEFAULT_CHAIN],
-    inputValue: 0,
-    inputApproveAmount: 0,
-    outputCurrency: USDC,
-    outputValue: 0,
-    outputApproveAmount: 0,
-    outputAccount: '',
-    slippageLimit: 1.0,
-    ratio: 0
-  });
-  const inputBalance = useCurrencyBalance(swap.inputCurrency);
-  const outputBalance = useCurrencyBalance(swap.outputCurrency);
+  const [tradeType, setTradeType] = useState(TradeType.EXACT_INPUT);
+  const [outputCurrency, setOutputCurrency] = useState<Currency>();
+  const [inputCurrency, setInputCurrency] = useState<Currency>();
+  const [inputValue, setInputValue] = useState<string>();
+  const [outputValue, setOutputValue] = useState<string>();
+  const [slippageLimit, setSlippageLimit] = useState<number>(1.0);
+  const [ratio, setRatio] = useState<number>(0);
+  const [
+    recipientAddressOrName,
+    setRecipientAddressOrName
+  ] = useState<string>();
+  const inputBalance = useCurrencyBalance(inputCurrency);
+  const outputBalance = useCurrencyBalance(outputCurrency);
   const { approve } = useApproveCallback(
-    CurrencyAmount.fromRawAmount(
-      swap.outputCurrency,
-      Math.floor(swap.outputValue * 10 ** swap.outputCurrency.wrapped.decimals)
-    ),
+    parseCurrencyAmount(inputCurrency, inputValue),
     ROUTER_ADDRESS[chainId ?? DEFAULT_CHAIN]
   );
 
   const chooseInput = (currency: Currency) => {
-    const target = { ...swap };
-    if (target.outputCurrency === currency) {
-      target.outputCurrency = target.inputCurrency;
+    if (outputCurrency && outputCurrency.equals(currency)) {
+      setOutputCurrency(inputCurrency);
     }
-    target.inputCurrency = currency;
-    setSwap(target);
+    setInputCurrency(currency);
   };
 
   const chooseOutput = (currency: Currency) => {
-    const target = { ...swap };
-    if (target.inputCurrency === currency) {
-      target.inputCurrency = target.outputCurrency;
+    if (inputCurrency && inputCurrency.equals(currency)) {
+      setInputCurrency(outputCurrency);
     }
-    target.outputCurrency = currency;
-    setSwap(target);
+    setOutputCurrency(currency);
   };
 
   const setInputMax = () => {
-    const target = { ...swap };
-    target.inputValue = inputBalance
-      ? parseFloat(inputBalance.toSignificant(6))
-      : 0;
-    setSwap(target);
+    setInputValue(inputBalance?.toExact());
+    setTradeType(TradeType.EXACT_INPUT);
   };
 
   const setOutputMax = () => {
-    const target = { ...swap };
-    target.outputValue = outputBalance
-      ? parseFloat(outputBalance.toSignificant(6))
-      : 0;
-    setSwap(target);
+    setOutputValue(outputBalance?.toExact());
+    setTradeType(TradeType.EXACT_OUTPUT);
   };
 
-  const setOutputValue = (e: any) => {
+  const setInputAmount = (e: any) => {
     const { value } = e.target;
-    const target = { ...swap };
-    target.outputValue = value;
-    if (target.ratio !== 0) {
-      target.inputValue = value / target.ratio;
-    }
-    setSwap(target);
+    setInputValue(value);
+    setTradeType(TradeType.EXACT_INPUT);
   };
 
-  const setInputValue = (e: any) => {
+  const setOutputAmount = (e: any) => {
     const { value } = e.target;
-    const target = { ...swap };
-    target.inputValue = value;
-    target.outputValue = value * target.ratio;
-    setSwap(target);
+    setOutputValue(value);
+    setTradeType(TradeType.EXACT_OUTPUT);
   };
 
-  const setSlippageLimit = (value: number) => {
-    const target = { ...swap };
-    target.slippageLimit = value;
-    setSwap(target);
+  const setAllowSlippageLimit = (value: number) => {
+    setSlippageLimit(value);
     setSlippageLimitVisible(false);
+    localStorage.setItem('slippageLimit', value.toString());
   };
 
-  const setOutputAccount = (e: any) => {
+  const setRecipient = (e: any) => {
     const { value } = e.target;
-    const target = { ...swap };
-    target.outputAccount = value;
-    setSwap(target);
+    setRecipientAddressOrName(value);
   };
 
-  const setRadio = async (e: any) => {
+  const setSwapRatio = (e: any) => {
     const { value } = e.target;
-    const target = { ...swap };
-    target.ratio = value;
-    target.outputValue = target.inputValue * value;
-    setSwap(target);
+    setRatio(value);
   };
 
   const swapPosition = () => {
-    const target = { ...swap };
-    target.inputCurrency = swap.outputCurrency;
-    target.outputCurrency = swap.inputCurrency;
-    setSwap(target);
+    setInputCurrency(outputCurrency);
+    setOutputCurrency(inputCurrency);
   };
 
   return (
@@ -149,9 +203,9 @@ export default function LimitOrder() {
                 operateLabel={intl.formatMessage({ id: 'buy' })}
                 balanceLabel={intl.formatMessage({ id: 'availableBalance' })}
                 chooseLabel={intl.formatMessage({ id: 'chooseToken' })}
-                value={swap.inputValue.toString()}
+                value={inputValue}
                 balance={inputBalance?.toExact()}
-                currency={swap.inputCurrency}
+                currency={inputCurrency}
                 approve={approve}
                 bgVisible
                 onChangeValue={setInputValue}
@@ -163,10 +217,10 @@ export default function LimitOrder() {
                   operateLabel={intl.formatMessage({ id: 'ratio' })}
                   rightLabel={intl.formatMessage({ id: 'lock' })}
                   chooseLabel={intl.formatMessage({ id: 'chooseToken' })}
-                  value={swap.ratio}
-                  currency={swap.outputCurrency}
+                  value={ratio}
+                  currency={outputCurrency}
                   approve={approve}
-                  onChangeValue={setRadio}
+                  onChangeValue={setSwapRatio}
                 />
                 <div className={style.main_box_radio_expire}>
                   <span className={style.main_box_radio_expire_title}>
@@ -194,9 +248,9 @@ export default function LimitOrder() {
                 operateLabel={intl.formatMessage({ id: 'sell' })}
                 balanceLabel={intl.formatMessage({ id: 'availableBalance' })}
                 chooseLabel={intl.formatMessage({ id: 'chooseToken' })}
-                value={swap.outputValue.toString()}
+                value={outputValue}
                 balance={outputBalance?.toExact()}
-                currency={swap.outputCurrency}
+                currency={outputCurrency}
                 approve={true}
                 onChangeValue={setOutputValue}
                 onMax={setOutputMax}
@@ -207,7 +261,7 @@ export default function LimitOrder() {
               {addressVisible && (
                 <Input
                   placeholder={intl.formatMessage({ id: 'swapReceiveAddress' })}
-                  onChange={setOutputAccount}
+                  onChange={setRecipient}
                   className={style.address}
                 />
               )}
@@ -223,38 +277,18 @@ export default function LimitOrder() {
               >
                 <i className="iconfont icon-setting" />
               </button>
-              {!active ? (
-                <button type="button" className={style.sumbit_disablebtn}>
-                  {intl.formatMessage({ id: 'connectWallet' })}
-                </button>
-              ) : swap.inputCurrency.wrapped.address &&
-                swap.outputCurrency.wrapped.address ? (
-                swap.inputValue <= 0 ? (
-                  <button type="button" className={style.sumbit_disablebtn}>
-                    {intl.formatMessage({ id: 'enterAmount' })}
-                  </button>
-                ) : swap.inputCurrency.isNative || approve ? (
-                  inputBalance &&
-                  parseFloat(inputBalance.toSignificant(6)) <
-                    swap.inputValue ? (
-                    <button type="button" className={style.sumbit_disablebtn}>
-                      {intl.formatMessage({ id: 'insufficientBalance' })}
-                    </button>
-                  ) : (
-                    <button type="button" className={style.sumbit_btn}>
-                      {intl.formatMessage({ id: 'swap' })}
-                    </button>
-                  )
-                ) : (
-                  <button type="button" className={style.sumbit_unlock}>
-                    {intl.formatMessage({ id: 'approve' })}
-                  </button>
-                )
-              ) : (
-                <button type="button" className={style.sumbit_disablebtn}>
-                  {intl.formatMessage({ id: 'chooseToken' })}
-                </button>
-              )}
+              <SwapButton
+                intl={intl}
+                active={active}
+                account={account}
+                inputCurrency={inputCurrency}
+                outputCurrency={outputCurrency}
+                inputBalance={inputBalance}
+                inputValue={parseCurrencyAmount(inputCurrency, inputValue)}
+                approve={approve}
+                allowSwap={false}
+                setReviewVisible={setReviewVisible}
+              />
             </div>
           </div>
           <TabFooter title={intl.formatMessage({ id: 'exchange' })} />
@@ -278,11 +312,11 @@ export default function LimitOrder() {
       />
       <SlippageLimit
         visible={slippageLimitVisible}
-        onOk={setSlippageLimit}
+        onOk={setAllowSlippageLimit}
         onCancel={() => {
           setSlippageLimitVisible(false);
         }}
-        slippageLimit={swap.slippageLimit}
+        slippageLimit={slippageLimit}
       />
       <GasPrice
         visible={gasPriceVisible}
