@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useApproveCallback } from '../../hooks/useApproveCallback';
 import { useCurrencyBalance } from '../../hooks/useCurrencyBalance';
-import { TradeType, Currency, CurrencyAmount } from '@uniswap/sdk-core';
+import { Currency, CurrencyAmount } from '@uniswap/sdk-core';
 import Setting from '../../components/setting';
 import SlippageLimit from '../../components/slippageLimit';
 import Input from '../../components/input';
@@ -116,7 +116,6 @@ export default function LimitOrder() {
   const [addressVisible, setAddressVisible] = useState(false);
   const [reviewVisible, setReviewVisible] = useState(false);
   const [expireIn, setExpireIn] = useState('0');
-  const [tradeType, setTradeType] = useState(TradeType.EXACT_INPUT);
   const [outputCurrency, setOutputCurrency] = useState<Currency>();
   const [inputCurrency, setInputCurrency] = useState<Currency>();
   const [inputValue, setInputValue] = useState<string>();
@@ -150,24 +149,20 @@ export default function LimitOrder() {
 
   const setInputMax = () => {
     setInputValue(inputBalance?.toExact());
-    setTradeType(TradeType.EXACT_INPUT);
   };
 
   const setOutputMax = () => {
     setOutputValue(outputBalance?.toExact());
-    setTradeType(TradeType.EXACT_OUTPUT);
   };
 
   const setInputAmount = (e: any) => {
     const { value } = e.target;
     setInputValue(value);
-    setTradeType(TradeType.EXACT_INPUT);
   };
 
   const setOutputAmount = (e: any) => {
     const { value } = e.target;
     setOutputValue(value);
-    setTradeType(TradeType.EXACT_OUTPUT);
   };
 
   const setAllowSlippageLimit = (value: number) => {
