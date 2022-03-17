@@ -1,5 +1,5 @@
 import { Currency, Percent, TradeType } from '@uniswap/sdk-core';
-import { Trade, Router } from '@uniswap/v2-sdk';
+import { Trade, Router } from '@byteprotocol/sdk';
 import { BigNumber } from 'ethers';
 import { useMemo } from 'react';
 import { DEFAULT_CHAIN } from '../constants/misc';

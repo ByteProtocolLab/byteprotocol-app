@@ -1,6 +1,6 @@
 import React from 'react';
 import { Currency } from '@uniswap/sdk-core';
-import { Route } from '@uniswap/v2-sdk';
+import { Route } from '@byteprotocol/sdk';
 import style from './index.module.scss';
 import { useIntl } from 'react-intl';
 

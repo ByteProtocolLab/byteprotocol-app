@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import useSwapCallback from '../../hooks/useSwapCallback';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
-import { Trade } from '@uniswap/v2-sdk';
+import { Trade } from '@byteprotocol/sdk';
 import { Currency, TradeType, Percent } from '@uniswap/sdk-core';
 import Modal from '../modal';
 import Confirm from '../confirm';

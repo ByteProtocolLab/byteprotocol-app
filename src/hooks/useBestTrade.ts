@@ -7,7 +7,7 @@ import {
   BigintIsh,
   TradeType
 } from '@uniswap/sdk-core';
-import { Pair, Trade, FACTORY_ADDRESS } from '@uniswap/v2-sdk';
+import { Pair, Trade, FACTORY_ADDRESS } from '@byteprotocol/sdk';
 import { pairFor, sortTokens } from '../utils/libarary';
 import { isTradeBetter } from '../utils/isTradeBetter';
 import {

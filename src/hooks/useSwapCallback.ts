@@ -1,4 +1,4 @@
-import { Trade } from '@uniswap/v2-sdk';
+import { Trade } from '@byteprotocol/sdk';
 import { Percent, Currency, TradeType } from '@uniswap/sdk-core';
 import useTransactionDeadline from './useTransactionDeadline';
 import { useSwapCallArguments } from './useSwapCallParams';

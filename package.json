@@ -1,10 +1,11 @@
 {
-  "homepage": "./",
+  "homepage": ".",
   "name": "byteprotocol-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@babel/core": "7.12.3",
+    "@byteprotocol/sdk": "^1.0.0",
     "@coinbase/wallet-sdk": "^3.0.1",
     "@ethersproject/address": "^5.3.0",
     "@ethersproject/contracts": "^5.3.0",
@@ -23,7 +24,6 @@
     "@types/react-dom": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
-    "@uniswap/v2-sdk": "^3.0.1",
     "@walletconnect/ethereum-provider": "^1.7.1",
     "@web3-react/core": "^8.0.18-beta.0",
     "@web3-react/eip1193": "^8.0.13-beta.0",
