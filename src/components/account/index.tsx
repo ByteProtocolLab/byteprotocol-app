@@ -71,7 +71,9 @@ export function AccountModal({
         <Avatar width={27} height={27} edge={15} address={account} />
         <div className={style.box_amount}>
           <span>SYSX</span>
-          <span>{sysxBalance ?? '0.0'}</span>
+          <span className={style.box_amount_value}>
+            {sysxBalance?.toSignificant(6)}
+          </span>
         </div>
       </div>
       <div className={style.transaction}>
