@@ -5,6 +5,10 @@ import Modal from '../modal';
 import Avatar from '../avatar';
 import { useIntl } from 'react-intl';
 import style from './index.module.scss';
+import { useCurrencyBalance } from '../../hooks/useCurrencyBalance';
+import { SYSX_BSC, SYSX_CURRENCY } from '../../constants/tokens';
+import { ChainId } from '../../connectors/chains';
+import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 
 export function AccountModal({
   account,
@@ -14,6 +18,8 @@ export function AccountModal({
   onChange: () => void;
 }) {
   const intl = useIntl();
+  const { chainId } = useActiveWeb3React();
+  const sysxBalance = useCurrencyBalance(SYSX_CURRENCY[chainId ?? ChainId.BSC]);
   return (
     <div className={style.wrapper}>
       <div className={style.main}>
@@ -65,7 +71,7 @@ export function AccountModal({
         <Avatar width={27} height={27} edge={15} address={account} />
         <div className={style.box_amount}>
           <span>SYSX</span>
-          <span>0.00</span>
+          <span>{sysxBalance ?? '0.0'}</span>
         </div>
       </div>
       <div className={style.transaction}>

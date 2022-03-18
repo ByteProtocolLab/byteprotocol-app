@@ -29,3 +29,11 @@ export const ROUTER_ADDRESS: AddressMap = constructSameAddressMap(
   '0x596464A3Db562cF9dBd8f059E26Deec6C2f2ae0B',
   [ChainId.BSC]
 );
+
+export const TIMELOCK_ADDRESS: AddressMap = {
+  [ChainId.BSC]: '0xd88e13FA3E53BBc61B16171611c1e403b7cD0746'
+};
+
+export const SYSX_ADDRESS: AddressMap = {
+  [ChainId.BSC]: '0xEb58B15Ee5A51FaA0aa939b56fa837B6936a49aD'
+};

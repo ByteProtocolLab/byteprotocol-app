@@ -6,6 +6,15 @@ import {
   NativeCurrency
 } from '@uniswap/sdk-core';
 import { ChainId } from '../connectors/chains';
+import { SYSX_ADDRESS } from './address';
+
+export const SYSX_BSC = new Token(
+  ChainId.BSC,
+  SYSX_ADDRESS[ChainId.BSC],
+  18,
+  'SYSX',
+  'Sysxswap'
+);
 
 // ETH
 export const ETH_BSC = new Token(
@@ -367,4 +376,8 @@ export const NATIVE_CURRENCY: { [chainId: number]: Currency } = {
   [ChainId.POLYGON_MUMBAI]: new Matic(ChainId.POLYGON_MUMBAI),
 
   [ChainId.BSC]: new BNB(ChainId.BSC)
+};
+
+export const SYSX_CURRENCY: { [chainId: number]: Token } = {
+  [ChainId.BSC]: SYSX_BSC
 };
