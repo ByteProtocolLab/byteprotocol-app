@@ -6,7 +6,7 @@ import Avatar from '../avatar';
 import { useIntl } from 'react-intl';
 import style from './index.module.scss';
 import { useCurrencyBalance } from '../../hooks/useCurrencyBalance';
-import { SYSX_BSC, SYSX_CURRENCY } from '../../constants/tokens';
+import { SYSX_CURRENCY } from '../../constants/tokens';
 import { ChainId } from '../../connectors/chains';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 
