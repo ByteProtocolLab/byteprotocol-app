@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Web3ReactHooks } from '@web3-react/core';
 import { Network } from '@web3-react/network';
 import { useState } from 'react';
@@ -118,6 +118,10 @@ export function NetworksSelect({
     connector,
     setDesiredChainId
   );
+
+  useEffect(() => {
+    switchChain(ChainId.BSC);
+  }, [switchChain]);
 
   if (error) {
     return (
