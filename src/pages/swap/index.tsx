@@ -333,11 +333,15 @@ export default function Swap() {
                 <span>0.3%</span>
               </div>
             </div>
-            {trade && (
+            {trade ? (
               <SwapDetailsDropdown
                 slippageLimit={slippageLimit}
                 trade={trade}
               />
+            ) : (
+              <div className={style.danger}>
+                {intl.formatMessage({ id: 'noLiquidityDescription' })}
+              </div>
             )}
             <div className={style.sumbit}>
               <button

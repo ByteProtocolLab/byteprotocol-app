@@ -160,5 +160,5 @@ export const EXTENDS_TOKENS: ChainCurrencyList = {
   [ChainId.OPTIMISTIC_KOVAN]: [],
   [ChainId.POLYGON]: [],
   [ChainId.POLYGON_MUMBAI]: [],
-  [ChainId.BSC]: []
+  [ChainId.BSC]: [ETH_BSC, DAI_BSC, BUSD, BTCB, USDT_BSC]
 };

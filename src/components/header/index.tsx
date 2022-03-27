@@ -14,6 +14,7 @@ import { NATIVE_CURRENCY } from '../../constants/tokens';
 import { DEFAULT_CHAIN } from '../../constants/misc';
 import style from './index.module.scss';
 import { ChainId } from '../../connectors/chains';
+import Claim from '../claim';
 
 const ConnectBox = ({ onOpen }: { onOpen: () => void }) => {
   const intl = useIntl();
@@ -51,6 +52,7 @@ export default function Header() {
   const { connector, chainId, error, active, account } = useActiveWeb3React();
   const [accountVisible, setAccountVisible] = useState(false);
   const [connectVisible, setConnectVisible] = useState(false);
+  const [claimVisible, setClaimVisible] = useState(true);
 
   return (
     <div>
@@ -86,6 +88,12 @@ export default function Header() {
           )}
           <GlobalSettings />
           <Source />
+          <Claim
+            visible={claimVisible}
+            onCancel={() => {
+              setClaimVisible(false);
+            }}
+          />
         </div>
       </div>
       <Account

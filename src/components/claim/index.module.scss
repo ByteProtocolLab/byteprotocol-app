@@ -1,0 +1,56 @@
+.wrapper {
+  width: 17rem;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    background: radial-gradient(
+      76.02% 75.41% at 1.84% 0%,
+      rgb(241, 40, 4) 0%,
+      rgb(2, 29, 67) 100%
+    );
+    padding: 0.8rem;
+    border-radius: 0.3rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+  .info {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-size: 0.9rem;
+    color: #666666;
+    margin-bottom: 0.5rem;
+  }
+
+  .input {
+    margin-bottom: 0.5rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    padding: 0.8rem;
+    font-size: 0.9rem;
+    border: 0.05rem solid #f3f3f3;
+    outline: none;
+    background-color: #f3f3f3;
+    box-sizing: border-box;
+  }
+
+  .btn {
+    cursor: pointer;
+    display: block;
+    padding: 0.6rem !important;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+    border-radius: 0.3rem;
+    color: #ffffff;
+    background: radial-gradient(
+      76.02% 75.41% at 1.84% 0%,
+      rgb(241, 40, 4) 0%,
+      rgb(2, 29, 67) 100%
+    );
+    font-weight: bold;
+  }
+}
