@@ -127,7 +127,7 @@ export function ConfirmRedeemModal({
               {`${intl.formatMessage({ id: 'redeem' })} ${currencyA?.symbol}`}
             </p>
             <p className={style.transcation_item_value}>
-              {callParams?.currencyAmountA.toSignificant(6)}
+              {callParams?.currencyAmountA.toSignificant(6) ?? '--'}
             </p>
           </div>
           <div className={style.transcation_item}>
@@ -135,7 +135,7 @@ export function ConfirmRedeemModal({
               {`${intl.formatMessage({ id: 'redeem' })} ${currencyB?.symbol}`}
             </p>
             <p className={style.transcation_item_value}>
-              {callParams?.currencyAmountB.toSignificant(6)}
+              {callParams?.currencyAmountB.toSignificant(6) ?? '--'}
             </p>
           </div>
         </div>
