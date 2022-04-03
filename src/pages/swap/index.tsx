@@ -155,12 +155,12 @@ export default function Swap({ match }: { match: any }) {
   const inputCurrencies = useSearch(match.params.inAddress);
   const outputCurrencies = useSearch(match.params.outAddress);
   useMemo(() => {
-    if (inputCurrencies && inputCurrencies.length === 0) {
+    if (inputCurrencies && inputCurrencies.length > 0) {
       setInputCurrency(inputCurrencies[0]);
     }
   }, [inputCurrencies]);
   useMemo(() => {
-    if (outputCurrencies && outputCurrencies.length === 0) {
+    if (outputCurrencies && outputCurrencies.length > 0) {
       setOutputCurrency(outputCurrencies[0]);
     }
   }, [outputCurrencies]);

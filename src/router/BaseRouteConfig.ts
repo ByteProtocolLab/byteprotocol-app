@@ -21,7 +21,7 @@ const routers: Array<router> = [
     component: Home,
     children: [
       {
-        path: '/swap',
+        path: '/swap/:inAddress/:outAddress',
         component: Swap
       },
       {

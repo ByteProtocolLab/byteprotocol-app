@@ -8,7 +8,7 @@ export interface Menu {
 export const SUPPORTED_MENUS: { [key: string]: Menu } = {
   TRADE: {
     name: 'swap',
-    path: '/swap',
+    path: '/swap/0x/0x',
     icon: 'iconfont icon-thunderbolt'
   },
   POOL: {
