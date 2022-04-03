@@ -4,13 +4,13 @@ import useActiveWeb3React from './useActiveWeb3React';
 import { aggregate } from '@makerdao/multicall';
 import { BigNumber } from 'ethers';
 import { CONFIG, DEFAULT_CHAIN } from '../constants/misc';
-import { Currency, Fraction, CurrencyAmount } from '@uniswap/sdk-core';
+import { Currency, CurrencyAmount, Token } from '@uniswap/sdk-core';
 import JSBI from 'jsbi';
 
 export interface RedeemCallParam {
   currencyAmountA: CurrencyAmount<Currency>;
   currencyAmountB: CurrencyAmount<Currency>;
-  liquidityAmount: Fraction;
+  liquidityAmount: CurrencyAmount<Currency>;
 }
 
 export function useRemoveLiquidityCallParams(
@@ -46,11 +46,6 @@ export function useRemoveLiquidityCallParams(
         target: pairAddress,
         call: ['totalSupply()(uint256)'],
         returns: [['totalSupply']]
-      },
-      {
-        target: pairAddress,
-        call: ['decimals()(uint256)'],
-        returns: [['decimals']]
       }
     ];
     aggregate(calls, CONFIG[chainId ?? DEFAULT_CHAIN])
@@ -60,7 +55,6 @@ export function useRemoveLiquidityCallParams(
         const balance0: BigNumber = data['balance0'];
         const balance1: BigNumber = data['balance1'];
         const totalSupply: BigNumber = data['totalSupply'];
-        const decimals: BigNumber = data['decimals'];
 
         const { amount0, amount1 } = getAmount(
           JSBI.BigInt(liquidity.toHexString()),
@@ -72,9 +66,15 @@ export function useRemoveLiquidityCallParams(
         setRedeemCallParams({
           currencyAmountA: CurrencyAmount.fromRawAmount(currency0, amount0),
           currencyAmountB: CurrencyAmount.fromRawAmount(currency1, amount1),
-          liquidityAmount: new Fraction(
-            liquidity.toHexString(),
-            10 ** decimals.toNumber()
+          liquidityAmount: CurrencyAmount.fromRawAmount(
+            new Token(
+              chainId ?? DEFAULT_CHAIN,
+              pairAddress,
+              18,
+              'UNI-V2',
+              'UNISWAP V2'
+            ),
+            liquidity.toHexString()
           )
         });
       })

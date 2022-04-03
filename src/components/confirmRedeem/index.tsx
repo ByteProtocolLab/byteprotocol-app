@@ -40,38 +40,31 @@ export function ConfirmRedeemModal({
   const intl = useIntl();
   const { chainId } = useActiveWeb3React();
 
-  const pairToken = useMemo(() => {
+  const pairAddress = useMemo(() => {
     if (!currencyA || !currencyB) return;
     const pairAddress = pairFor(
       currencyA.wrapped.address,
       currencyB.wrapped.address
     );
-    return new Token(ChainId.MAINNET, pairAddress, 18, 'UNI-V2', 'UNISWAP V2');
+    return pairAddress;
   }, [currencyA, currencyB]);
 
   const callParams = useRemoveLiquidityCallParams(currencyA, currencyB);
 
   const { signature, gatherPermitSignature } = useLiquidityTokenPermit(
-    pairToken?.address,
+    pairAddress,
     BigNumber.from(callParams?.liquidityAmount.numerator.toString() ?? 0)
   );
 
   const { approve, approveCallback } = useApproveCallback(
-    pairToken && callParams
-      ? CurrencyAmount.fromRawAmount(
-          pairToken,
-          callParams.liquidityAmount.quotient
-        )
-      : undefined,
+    callParams ? callParams.liquidityAmount : undefined,
     ROUTER_ADDRESS[chainId ?? DEFAULT_CHAIN]
   );
-
-  const allowSlippageLimit = new Percent(slippageLimit, 100);
 
   const removeLiquidity = useRemoveLiquidity(
     approve,
     signature,
-    allowSlippageLimit,
+    new Percent(slippageLimit, 100),
     callParams?.liquidityAmount,
     callParams?.currencyAmountA,
     callParams?.currencyAmountB
