@@ -20,8 +20,9 @@
     display: block;
     margin-bottom: 0.6rem;
     font-size: 0.9rem;
-    color: #666666;
     margin-bottom: 0.5rem;
+    color: #333333;
+    color: var(--text-02);
   }
 
   .input {
@@ -30,10 +31,12 @@
     border-radius: 0.5rem;
     padding: 0.8rem;
     font-size: 0.9rem;
-    border: 0.05rem solid #f3f3f3;
     outline: none;
-    background-color: #f3f3f3;
     box-sizing: border-box;
+    border: 0.05rem solid #e3e3e3;
+    border: 0.05rem solid var(--border-01);
+    background-color: #ffffff;
+    background-color: var(--bg-02);
   }
 
   .btn {

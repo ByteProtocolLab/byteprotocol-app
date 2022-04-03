@@ -7,6 +7,7 @@
   border: 0.05rem solid var(--border-03);
   border-radius: 50%;
   position: relative;
+  z-index: 1;
 
   &_picture {
     position: absolute;
@@ -28,7 +29,7 @@
     width: 100%;
     height: 100%;
     font-size: 0.8rem;
-    line-height: 1.5rem !important;
+    line-height: 1.6rem !important;
     text-align: center !important;
     border-radius: 50%;
     color: #333333;

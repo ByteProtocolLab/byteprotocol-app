@@ -16,6 +16,7 @@ import Modal from '../modal';
 import Alert from '../alert';
 import style from './index.module.scss';
 import { DEFAULT_CHAIN } from '../../constants/misc';
+import TokenButton from '../token';
 
 export function ConfirmRedeemModal({
   visible,
@@ -113,26 +114,12 @@ export function ConfirmRedeemModal({
       <div>
         <div className={style.main}>
           <div className={style.tokens}>
-            <div
-              className={style.token}
-              style={{
-                backgroundImage: `url(https://tokens.1inch.io/${
-                  currencyA?.isNative
-                    ? '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
-                    : currencyA?.wrapped.address.toLowerCase()
-                }.png)`
-              }}
-            />
-            <div
-              className={style.token}
-              style={{
-                backgroundImage: `url(https://tokens.1inch.io/${
-                  currencyB?.isNative
-                    ? '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
-                    : currencyB?.wrapped.address.toLowerCase()
-                }.png)`
-              }}
-            />
+            <div className={style.token}>
+              <TokenButton currency={currencyA} />
+            </div>
+            <div className={style.token}>
+              <TokenButton currency={currencyB} />
+            </div>
           </div>
           <span className={style.value}>
             {callParams?.liquidityAmount.toSignificant(6)}

@@ -9,6 +9,7 @@ import TradeSuccess from '../tradeSuccess';
 import { Liquidity } from '../../hooks/useLiquidity';
 import useAddLiquidity from '../../hooks/useAddLiquidity';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
+import TokenButton from '../token';
 
 export function ConfirmSupplyModal({
   visible,
@@ -62,26 +63,12 @@ export function ConfirmSupplyModal({
           <div>
             <div className={style.main}>
               <div className={style.tokens}>
-                <div
-                  className={style.token}
-                  style={{
-                    backgroundImage: `url(https://tokens.1inch.io/${
-                      liquidity.inputAmount.currency.isNative
-                        ? '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
-                        : liquidity.inputAmount.currency.wrapped.address.toLowerCase()
-                    }.png)`
-                  }}
-                />
-                <div
-                  className={style.token}
-                  style={{
-                    backgroundImage: `url(https://tokens.1inch.io/${
-                      liquidity.outputAmount.currency.isNative
-                        ? '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
-                        : liquidity.outputAmount.currency.wrapped.address.toLowerCase()
-                    }.png)`
-                  }}
-                />
+                <div className={style.token}>
+                  <TokenButton currency={liquidity.inputAmount.currency} />
+                </div>
+                <div className={style.token}>
+                  <TokenButton currency={liquidity.outputAmount.currency} />
+                </div>
               </div>
               <span className={style.value}>
                 ~ {liquidity.liquidity.toSignificant(6)}
