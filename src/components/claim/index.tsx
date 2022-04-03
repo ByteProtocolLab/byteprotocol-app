@@ -19,10 +19,6 @@ export default function Claim({
   return (
     <Popover visible={visible} title="Claim" onCancel={onCancel}>
       <div className={style.wrapper}>
-        <span className={style.header}>
-          <span>SYSX</span>
-          <span>0</span>
-        </span>
         <span className={style.info}>
           Enter an address to trigger a SYSX claim. If the address has any
           claimable SYSX it will be sent to them on submission.

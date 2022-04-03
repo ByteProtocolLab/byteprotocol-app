@@ -1,21 +1,6 @@
 .wrapper {
   width: 17rem;
 
-  .header {
-    display: flex;
-    justify-content: space-between;
-    background: radial-gradient(
-      76.02% 75.41% at 1.84% 0%,
-      rgb(241, 40, 4) 0%,
-      rgb(2, 29, 67) 100%
-    );
-    padding: 0.8rem;
-    border-radius: 0.3rem;
-    color: #ffffff;
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
-  }
-
   .info {
     display: block;
     margin-bottom: 0.6rem;

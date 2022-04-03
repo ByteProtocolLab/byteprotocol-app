@@ -126,11 +126,11 @@ export const COMMON_BASES: ChainCurrencyList = {
   [ChainId.BSC]: [
     NATIVE_CURRENCY[ChainId.BSC],
     WRAPPED_NATIVE_CURRENCY[ChainId.BSC],
+    USDT_BSC,
     ETH_BSC,
     DAI_BSC,
     BUSD,
-    BTCB,
-    USDT_BSC
+    BTCB
   ]
 };
 
