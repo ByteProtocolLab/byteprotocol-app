@@ -4,15 +4,19 @@ import { useIntl } from 'react-intl';
 import { Currency } from '@uniswap/sdk-core';
 import ImportPanel from '../../components/importPanel';
 import Pools from '../../components/pools';
-import style from './index.module.scss';
+import Token from '../../components/token';
+import { EXTENDS_POOLS } from '../../constants/pools';
+import { ChainId } from '../../connectors/chains';
 import { pairFor } from '../../utils/libarary';
+import useActiveWeb3React from '../../hooks/useActiveWeb3React';
+import style from './index.module.scss';
 
 export default function Pool() {
   const intl = useIntl();
+  const { chainId } = useActiveWeb3React();
   const [pairs, setPairs] = useState<{ [key: string]: [Currency, Currency] }>(
     {}
   );
-
   const importPair = (currencyA?: Currency, currencyB?: Currency) => {
     if (
       currencyA &&
@@ -81,6 +85,54 @@ export default function Pool() {
         </div>
         <div className={style.import}>
           <ImportPanel importPair={importPair} />
+        </div>
+        <div className={style.boxs}>
+          <div className={style.boxs_content}>
+            {EXTENDS_POOLS[chainId ?? ChainId.BSC].map((item: any, index) => {
+              return (
+                <Link
+                  to={`/supply/${item[0]?.wrapped.address ?? '0x0'}/${
+                    item[1]?.wrapped.address ?? '0x0'
+                  }`}
+                  className={style.box}
+                  key={index}
+                >
+                  <div className={style.header}>
+                    <div>
+                      <span className={style.header_token}>
+                        <Token currency={item[0]} />
+                      </span>
+                      <span className={style.header_token}>
+                        <Token currency={item[1]} />
+                      </span>
+                    </div>
+                  </div>
+                  <div className={style.content}>
+                    <div className={style.item}>
+                      <span className={style.item_title}>Token</span>
+                      <span className={style.item_value}>
+                        {item[0].symbol}/{item[1].symbol}
+                      </span>
+                    </div>
+                    <div className={style.item}>
+                      <span className={style.item_title}>24h Fees</span>
+                      <span className={style.item_value}>NEW</span>
+                    </div>
+                  </div>
+                  <div className={style.content}>
+                    <div className={style.item}>
+                      <span className={style.item_title}>Wallet Balance</span>
+                      <span className={style.item_value}>--</span>
+                    </div>
+                    <div className={style.item}>
+                      <span className={style.item_title}>Liquidity</span>
+                      <span className={style.item_value}>--</span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
         </div>
         {Object.keys(pairs).length <= 0 ? (
           <span className={style.hint}>

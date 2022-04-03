@@ -181,9 +181,16 @@ export default function Swap({ match }: { match: any }) {
   const trade = useBestTrade(tradeType, amountSpecified, otherCurrency);
 
   useMemo(() => {
-    if (inputValue === '' && tradeType === TradeType.EXACT_INPUT) {
+    if (
+      (inputValue === '' || inputValue === '0') &&
+      tradeType === TradeType.EXACT_INPUT
+    ) {
       setOutputValue('');
-    } else if (outputValue === '' && tradeType === TradeType.EXACT_OUTPUT) {
+    } else if (
+      outputValue &&
+      (outputValue === '' || outputValue === '0') &&
+      tradeType === TradeType.EXACT_OUTPUT
+    ) {
       setInputValue('');
     } else if (
       inputCurrency?.wrapped.address === outputCurrency?.wrapped.address
@@ -239,18 +246,12 @@ export default function Swap({ match }: { match: any }) {
 
   const setInputAmount = (e: any) => {
     const { value } = e.target;
-    if (value === '0') {
-      setOutputValue('0');
-    }
     setInputValue(value);
     setTradeType(TradeType.EXACT_INPUT);
   };
 
   const setOutputAmount = (e: any) => {
     const { value } = e.target;
-    if (value === '0') {
-      setInputValue('0');
-    }
     setOutputValue(value);
     setTradeType(TradeType.EXACT_OUTPUT);
   };
@@ -358,9 +359,11 @@ export default function Swap({ match }: { match: any }) {
                 trade={trade}
               />
             ) : (
-              <div className={style.danger}>
-                {intl.formatMessage({ id: 'noLiquidityDescription' })}
-              </div>
+              (inputValue === '' || outputValue === '') ?? (
+                <div className={style.danger}>
+                  {intl.formatMessage({ id: 'noLiquidityDescription' })}
+                </div>
+              )
             )}
             <div className={style.sumbit}>
               <button
