@@ -202,7 +202,7 @@ export const CHAINS: {
     urls: ['https://rpc.ankr.com/bsc'].filter((url) => url !== undefined),
     name: 'BSC',
     nativeCurrency: BNB,
-    blockExplorerUrls: ['https://mumbai.polygonscan.com'],
+    blockExplorerUrls: ['https://bscscan.com'],
     iconURL: BSC_ICON_URL
   }
 };
