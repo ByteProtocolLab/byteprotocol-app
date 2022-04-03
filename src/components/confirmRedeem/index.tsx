@@ -6,17 +6,17 @@ import { useLiquidityTokenPermit } from '../../hooks/useLiquidityTokenPermit';
 import { useRemoveLiquidity } from '../../hooks/useRemoveLiquidity';
 import { useRemoveLiquidityCallParams } from '../../hooks/useRemoveLiquidityCallParams';
 import { useApproveCallback } from '../../hooks/useApproveCallback';
+import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { pairFor } from '../../utils/libarary';
 import { ChainId } from '../../connectors/chains';
 import { ROUTER_ADDRESS } from '../../constants/address';
-import useActiveWeb3React from '../../hooks/useActiveWeb3React';
+import { DEFAULT_CHAIN } from '../../constants/misc';
 import TradeSuccess from '../tradeSuccess';
 import Confirm from '../confirm';
 import Modal from '../modal';
 import Alert from '../alert';
-import style from './index.module.scss';
-import { DEFAULT_CHAIN } from '../../constants/misc';
 import TokenButton from '../token';
+import style from './index.module.scss';
 
 export function ConfirmRedeemModal({
   visible,
