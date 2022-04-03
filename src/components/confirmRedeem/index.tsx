@@ -1,14 +1,13 @@
 import React, { useMemo, useState } from 'react';
 import { BigNumber } from 'ethers';
 import { useIntl } from 'react-intl';
-import { Percent, Token, CurrencyAmount, Currency } from '@uniswap/sdk-core';
+import { Percent, Currency } from '@uniswap/sdk-core';
 import { useLiquidityTokenPermit } from '../../hooks/useLiquidityTokenPermit';
 import { useRemoveLiquidity } from '../../hooks/useRemoveLiquidity';
 import { useRemoveLiquidityCallParams } from '../../hooks/useRemoveLiquidityCallParams';
 import { useApproveCallback } from '../../hooks/useApproveCallback';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { pairFor } from '../../utils/libarary';
-import { ChainId } from '../../connectors/chains';
 import { ROUTER_ADDRESS } from '../../constants/address';
 import { DEFAULT_CHAIN } from '../../constants/misc';
 import TradeSuccess from '../tradeSuccess';
@@ -115,7 +114,7 @@ export function ConfirmRedeemModal({
             </div>
           </div>
           <span className={style.value}>
-            {callParams?.liquidityAmount.toSignificant(6)}
+            {callParams?.liquidityAmount.toSignificant(6) ?? '0'}
             <i className="iconfont icon-safetycertificate-f" />
           </span>
           <span className={style.title}>
