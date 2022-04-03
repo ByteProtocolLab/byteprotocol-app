@@ -239,12 +239,18 @@ export default function Swap({ match }: { match: any }) {
 
   const setInputAmount = (e: any) => {
     const { value } = e.target;
+    if (value === '0') {
+      setOutputValue('0');
+    }
     setInputValue(value);
     setTradeType(TradeType.EXACT_INPUT);
   };
 
   const setOutputAmount = (e: any) => {
     const { value } = e.target;
+    if (value === '0') {
+      setInputValue('0');
+    }
     setOutputValue(value);
     setTradeType(TradeType.EXACT_OUTPUT);
   };
