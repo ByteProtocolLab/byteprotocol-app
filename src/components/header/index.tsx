@@ -88,12 +88,12 @@ export default function Header() {
           )}
           <GlobalSettings />
           <Source />
-          <Claim
+          {/* <Claim
             visible={claimVisible}
             onCancel={() => {
               setClaimVisible(false);
             }}
-          />
+          /> */}
         </div>
       </div>
       <Account
