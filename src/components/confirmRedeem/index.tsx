@@ -52,7 +52,7 @@ export function ConfirmRedeemModal({
 
   const { signature, gatherPermitSignature } = useLiquidityTokenPermit(
     pairAddress,
-    BigNumber.from(callParams?.liquidityAmount.numerator.toString() ?? 0)
+    BigNumber.from(callParams?.liquidityAmount.quotient.toString() ?? 0)
   );
 
   const { approve, approveCallback } = useApproveCallback(

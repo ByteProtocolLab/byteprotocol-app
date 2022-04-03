@@ -19,6 +19,7 @@ import { useWrappedCallback } from '../../hooks/useWrappedCallback';
 import { parseCurrencyAmount } from '../../utils/parse';
 import style from './index.module.scss';
 import { DEFAULT_CHAIN } from '../../constants/misc';
+import { useSearch } from '../../hooks/useSearch';
 
 const SwapButton = ({
   intl,
@@ -130,7 +131,13 @@ const SwapButton = ({
   }
 };
 
-export default function Swap() {
+export default function Swap({
+  inAddress,
+  outAddress
+}: {
+  inAddress: string;
+  outAddress: string;
+}) {
   const intl = useIntl();
   const { account, active, chainId } = useActiveWeb3React();
   const [settingVisible, setSettingVisible] = useState(false);
@@ -140,11 +147,17 @@ export default function Swap() {
   const [addressVisible, setAddressVisible] = useState(false);
   const [approveVisible, setApproveVisible] = useState(false);
   const [tradeType, setTradeType] = useState(TradeType.EXACT_INPUT);
-  const [outputCurrency, setOutputCurrency] = useState<Currency>();
-  const [inputCurrency, setInputCurrency] = useState<Currency>();
   const [inputValue, setInputValue] = useState<string>();
   const [outputValue, setOutputValue] = useState<string>();
   const [slippageLimit, setSlippageLimit] = useState<number>(1.0);
+  const inputCurrencies = useSearch(inAddress);
+  const outputCurrencies = useSearch(outAddress);
+  const [outputCurrency, setOutputCurrency] = useState<Currency>(
+    inputCurrencies[0]
+  );
+  const [inputCurrency, setInputCurrency] = useState<Currency>(
+    outputCurrencies[0]
+  );
   const [
     recipientAddressOrName,
     setRecipientAddressOrName

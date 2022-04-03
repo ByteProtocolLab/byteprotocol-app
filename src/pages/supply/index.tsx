@@ -20,6 +20,7 @@ import { DEFAULT_CHAIN, ONE_HUNDRED_PERCENT, ZERO } from '../../constants/misc';
 import { getLiquidity } from '../../utils/libarary';
 import JSBI from 'jsbi';
 import style from './index.module.scss';
+import { useSearch } from '../../hooks/useSearch';
 
 const SupplyButton = ({
   intl,
@@ -126,7 +127,13 @@ const SupplyButton = ({
   }
 };
 
-export default function Supply() {
+export default function Supply({
+  inAddress,
+  outAddress
+}: {
+  inAddress: string;
+  outAddress: string;
+}) {
   const intl = useIntl();
   const { account, active, chainId } = useActiveWeb3React();
   const [settingVisible, setSettingVisible] = useState(false);
@@ -135,12 +142,18 @@ export default function Supply() {
   const [slippageLimitVisible, setSlippageLimitVisible] = useState(false);
   const [gasPriceVisible, setGasPriceVisible] = useState(false);
   const [approveVisible, setApproveVisible] = useState(false);
-  const [outputCurrency, setOutputCurrency] = useState<Currency>();
-  const [inputCurrency, setInputCurrency] = useState<Currency>();
   const [tradeType, setTradeType] = useState(TradeType.EXACT_INPUT);
   const [inputValue, setInputValue] = useState<string>();
   const [outputValue, setOutputValue] = useState<string>();
   const [slippageLimit, setSlippageLimit] = useState<number>(1.0);
+  const inputCurrencies = useSearch(inAddress);
+  const outputCurrencies = useSearch(outAddress);
+  const [outputCurrency, setOutputCurrency] = useState<Currency>(
+    inputCurrencies[0]
+  );
+  const [inputCurrency, setInputCurrency] = useState<Currency>(
+    outputCurrencies[0]
+  );
   const inputBalance = useCurrencyBalance(inputCurrency);
   const outputBalance = useCurrencyBalance(outputCurrency);
   const [

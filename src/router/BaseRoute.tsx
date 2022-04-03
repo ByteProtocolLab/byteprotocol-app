@@ -1,11 +1,11 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import ErrorBoundary from '../components/errorBoundary';
 import routers from './BaseRouteConfig';
 
 function BaseRoute() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Switch>
         <ErrorBoundary>
           {routers.map((router) => (
@@ -31,7 +31,7 @@ function BaseRoute() {
           ))}
         </ErrorBoundary>
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
