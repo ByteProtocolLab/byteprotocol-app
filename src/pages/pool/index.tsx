@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { Currency } from '@uniswap/sdk-core';
@@ -10,6 +10,7 @@ import { ChainId } from '../../connectors/chains';
 import { pairFor } from '../../utils/libarary';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import style from './index.module.scss';
+import { usePairsInfo } from '../../hooks/usePair';
 
 export default function Pool() {
   const intl = useIntl();
@@ -34,6 +35,18 @@ export default function Pool() {
       }
     }
   };
+
+  const pairAddresses = useMemo(() => {
+    const pairAddresses = Object.keys(pairs).map((key) => {
+      return pairFor(
+        pairs[key][0].wrapped.address,
+        pairs[key][1].wrapped.address
+      );
+    });
+    return pairAddresses;
+  }, [pairs]);
+
+  usePairsInfo(pairAddresses);
 
   return (
     <div className={style.wrapper}>

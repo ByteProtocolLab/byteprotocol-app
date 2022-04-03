@@ -1,6 +1,6 @@
-import { createWatcher, IUpdate } from '@makerdao/multicall';
+import { aggregate, createWatcher, IUpdate } from '@makerdao/multicall';
 import { BigNumber } from 'ethers';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { CONFIG, DEFAULT_CHAIN } from '../constants/misc';
 import useActiveWeb3React from './useActiveWeb3React';
 
@@ -61,4 +61,28 @@ export function useGetReserves(
     watcher.start();
   }, [chainId, onReserves, pairAddress]);
   return reserves;
+}
+
+export function usePairsInfo(
+  pairAddresses: string[]
+): { [key: string]: BigNumber } | undefined {
+  const { chainId } = useActiveWeb3React();
+  const [pairs, setPairs] = useState<{ [key: string]: BigNumber }>();
+  useMemo(() => {
+    const calls = pairAddresses.map((pairAddress) => {
+      return {
+        target: pairAddress,
+        call: ['getReserves()(uint112,uint112)'],
+        returns: [[pairAddress + '_reserve0'], [pairAddress + '_reserve1']]
+      };
+    });
+    aggregate(calls, CONFIG[chainId ?? DEFAULT_CHAIN])
+      .then((res: any) => {
+        setPairs(res.results.transformed);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [chainId, pairAddresses]);
+  return pairs;
 }
