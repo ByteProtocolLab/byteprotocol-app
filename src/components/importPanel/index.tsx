@@ -31,8 +31,8 @@ export default function ImportPanel({
   return (
     <div className={style.wrapper}>
       <Link
-        to={`/supply/${currencyA?.wrapped.address ?? '0x'}/${
-          currencyB?.wrapped.address ?? '0x'
+        to={`/supply/${currencyA?.wrapped.address ?? '0x0'}/${
+          currencyB?.wrapped.address ?? '0x0'
         }`}
         className={style.target}
         onClick={() => {

@@ -9,12 +9,13 @@ import useActiveWeb3React from './useActiveWeb3React';
 
 export function useSearch(addressWithSymbol: string): Currency[] {
   const { chainId } = useActiveWeb3React();
-  const [currencies, setCurrencies] = useState<Currency[]>(
-    EXTENDS_TOKENS[chainId ?? DEFAULT_CHAIN]
-  );
+  const [currencies, setCurrencies] = useState<Currency[]>([]);
   useMemo(() => {
     const regexp = new RegExp('^(0x[a-fA-F0-9]{40})$');
-    if (addressWithSymbol && regexp.test(addressWithSymbol) && account) {
+
+    if (addressWithSymbol === '0x0') {
+      setCurrencies([]);
+    } else if (addressWithSymbol && regexp.test(addressWithSymbol) && account) {
       const calls = [
         {
           target: addressWithSymbol,
