@@ -131,13 +131,7 @@ const SwapButton = ({
   }
 };
 
-export default function Swap({
-  inAddress,
-  outAddress
-}: {
-  inAddress: string;
-  outAddress: string;
-}) {
+export default function Swap({ match }: { match: any }) {
   const intl = useIntl();
   const { account, active, chainId } = useActiveWeb3React();
   const [settingVisible, setSettingVisible] = useState(false);
@@ -150,20 +144,26 @@ export default function Swap({
   const [inputValue, setInputValue] = useState<string>();
   const [outputValue, setOutputValue] = useState<string>();
   const [slippageLimit, setSlippageLimit] = useState<number>(1.0);
-  const inputCurrencies = useSearch(inAddress);
-  const outputCurrencies = useSearch(outAddress);
-  const [outputCurrency, setOutputCurrency] = useState<Currency>(
-    inputCurrencies[0]
-  );
-  const [inputCurrency, setInputCurrency] = useState<Currency>(
-    outputCurrencies[0]
-  );
+  const [outputCurrency, setOutputCurrency] = useState<Currency>();
+  const [inputCurrency, setInputCurrency] = useState<Currency>();
   const [
     recipientAddressOrName,
     setRecipientAddressOrName
   ] = useState<string>();
   const inputBalance = useCurrencyBalance(inputCurrency);
   const outputBalance = useCurrencyBalance(outputCurrency);
+  const inputCurrencies = useSearch(match.params.inAddress);
+  const outputCurrencies = useSearch(match.params.outAddress);
+  useMemo(() => {
+    if (inputCurrencies && inputCurrencies.length === 0) {
+      setInputCurrency(inputCurrencies[0]);
+    }
+  }, [inputCurrencies]);
+  useMemo(() => {
+    if (outputCurrencies && outputCurrencies.length === 0) {
+      setOutputCurrency(outputCurrencies[0]);
+    }
+  }, [outputCurrencies]);
 
   const { approve, approveCallback } = useApproveCallback(
     parseCurrencyAmount(inputCurrency, inputValue),

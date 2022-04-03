@@ -25,7 +25,7 @@ const routers: Array<router> = [
         component: Swap
       },
       {
-        path: '/supply',
+        path: '/supply/:inAddress/:outAddress',
         component: Supply
       },
       {
